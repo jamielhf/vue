@@ -10704,9 +10704,6 @@
 
 	var __vue_exports__, __vue_options__
 
-	/* styles */
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"!!vue-style-loader!css-loader!vue-loader/lib/style-rewriter?id=data-v-5!scss!vue-loader/lib/selector?type=styles&index=0!./footer.vue\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
-
 	/* script */
 	__vue_exports__ = __webpack_require__(17)
 
@@ -10745,7 +10742,7 @@
 
 /***/ },
 /* 17 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -10765,47 +10762,8 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 
-	//require('../css/footer.scss');
-
+	__webpack_require__(18);
 
 	exports.default = {
 	  data: function data() {
@@ -10821,8 +10779,46 @@
 	};
 
 /***/ },
-/* 18 */,
-/* 19 */,
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(19);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(14)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./footer.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./footer.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(7)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".footer {\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 3.2rem; }\n  .footer div {\n    position: relative;\n    display: flex;\n    border-top: 1px solid #999; }\n  .footer a {\n    position: relative;\n    height: 3.2rem;\n    width: 33.33%;\n    flex: auto;\n    color: #999;\n    font-size: 0.74667rem;\n    text-align: center;\n    box-sizing: border-box;\n    border-right: 1px solid #ddd;\n    line-height: 3.2rem; }\n    .footer a.active {\n      color: #3a9e50;\n      font-size: 0.96rem; }\n    .footer a:last-child {\n      border-right: 0; }\n", ""]);
+
+	// exports
+
+
+/***/ },
 /* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
