@@ -1,0 +1,10 @@
+//基础font-size
+$font:16;
+//设计稿宽度
+$screen:750;
+
+
+@function px2rem($n){
+  @return #{$n/($screen*$font/320)}rem
+}
+

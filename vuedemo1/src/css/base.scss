@@ -1,0 +1,21 @@
+
+@charset "utf-8";
+/* CSS Document */
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;}
+body,input,textarea,select,button,table{border-collapse:collapse;border-spacing:0;}
+body{font:normal 1em/1.25em 'microsoft Yahei',Verdana,Arial,Helvetica,sans-serif;color:#000;-webkit-text-size-adjust:none}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+img,fieldset{border:0 none;}
+ul,ol,li{list-style:none;}
+em,address{font-style:normal;}
+table{border-collapse:collapse;}
+em,i{font-style:normal;}
+strong,b{font-weight:normal;}
+img{border:none;}
+input,img{vertical-align:middle;}
+input{outline:none;}
+*{-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+textarea:focus{outline:0;}
+a{text-decoration:none;}
+.clearfix:after{display:block;clear:both;visibility:hidden;height:0;content:" ";font-size:0;}
+.clearfix{*zoom:1;}

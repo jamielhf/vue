@@ -1,0 +1,52 @@
+@import "base";
+
+
+html,body{
+  width: 100%;
+  overflow-x:hidden;
+  min-width: 320px;
+  height:100%;
+  background-color:#eeeef4;
+}
+
+
+html {
+  font-size : 20px*0.8;
+}
+@media only screen and (min-width: 359px){
+  html {
+    font-size: 22.5px*0.8 !important;
+  }
+}
+
+@media only screen and (min-width: 374px){
+  html {
+    font-size: 23.5px*0.8 !important;
+  }
+}
+
+@media only screen and (min-width: 401px){
+  html {
+    font-size: 25px*0.8 !important;
+  }
+}
+@media only screen and (min-width: 428px){
+  html {
+    font-size: 26.75px*0.8 !important;
+  }
+}
+@media only screen and (min-width: 481px){
+  html {
+    font-size: 30px*0.8 !important;
+  }
+}
+@media only screen and (min-width: 569px){
+  html {
+    font-size: 35px*0.8 !important;
+  }
+}
+@media only screen and (min-width: 641px){
+  html {
+    font-size: 40px*0.8 !important;
+  }
+}
