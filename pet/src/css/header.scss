@@ -1,0 +1,25 @@
+@import "base/min";
+
+
+.header{
+  position: relative;
+  top:0;
+  width: px2rem(750);
+  height:px2rem(100);
+  text-align: center;
+  border-bottom:1px solid #999;
+  box-sizing: border-box;
+  line-height: px2rem(100);
+  background-color: $bColor;
+  .place{
+    position: relative;
+    left:0;
+    float: left;
+    width: px2rem(150);
+    line-height: px2rem(100);
+    text-align: center;
+    color: $fontC;
+    font-size: px2rem(30);
+
+  }
+}
