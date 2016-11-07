@@ -7,7 +7,8 @@ vue学习项目
 webpack的配置之前是自己写的，但看过vue-cli后觉得那个更好，所以就用vue-cli webpack-simple那个，新手还是用simple的版本好点
 
 还有数据的话只是暂时用json填个坑在那，后端暂时没确定用什么做。只是写好一些数据
-启动
+<br>
+启动<br>
 <code>
 npm i && npm run dev
 </code>
