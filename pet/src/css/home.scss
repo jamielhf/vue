@@ -1,0 +1,39 @@
+@import "base/min";
+
+.com-home{
+  position: relative;
+  .link-box{
+    width: 100%;
+    display: block;
+    height: 100%;
+    position: relative;
+  }
+  .user-info{
+    background-color: #fff;
+    padding: px2rem(20);
+    box-sizing: border-box;
+    height: px2rem(180);
+    img{
+      border-radius: 100%;
+      width: px2rem(120);
+      height: px2rem(120);
+      float: left;
+    }
+    p{
+      color: #333;
+      float: left;
+      font-size: px2rem(42);
+      padding-left: px2rem(20);
+    }
+  }
+  .icon-right{
+    position: absolute;
+    right: px2rem(20);
+    top:50%;
+    margin-top: px2rem(-15);
+      font-size: px2rem(30);
+      line-height:px2rem(30);
+      color: #999;
+  }
+
+}

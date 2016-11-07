@@ -1,0 +1,81 @@
+@import "base/min";
+
+
+.com-article{
+  position: relative;
+  background-color: #f4f4f4;
+  margin-bottom: px2rem(120);
+  .box{
+    position: relative;
+  }
+  .imgbox{
+    img{
+      width: 100%;
+      height: px2rem(400);
+    }
+  }
+  .art-detail{
+    position: relative;
+    margin-top: px2rem(20);
+    background-color: #fff;
+    padding:  px2rem(15);
+    box-sizing: border-box;
+  }
+
+  .user{
+    position: relative;
+    height: px2rem(120);
+    background-color: #fff;
+    time{
+      position: absolute;
+      right: px2rem(15);
+      bottom:px2rem(15);
+    }
+    img{
+      display: block;
+      width: px2rem(100);
+      height: px2rem(100);
+      margin:px2rem(10) 0 0 px2rem(10);
+      border-radius: 100%;
+      float: left;
+    }
+    .name{
+      width: px2rem(400);
+      float: left;
+      margin-left: px2rem(20);
+      p{
+        padding-top: px2rem(15);
+        line-height: px2rem(40);
+        color: #333;
+        font-size: px2rem(30);
+      }
+
+    }
+    .tag{
+      position: relative;
+      top:0;
+      width: 100%;
+      span{
+        display: inline-block;
+        width: px2rem(60);
+        height: px2rem(30);
+        line-height: px2rem(30);
+        font-size: px2rem(14);
+        text-align: center;
+        border:1px solid $bColor;
+        background-color: #fff;
+        border-radius: px2rem(5);
+        color: $bColor;
+        margin-right: px2rem(10);
+      }
+    }
+    .btn-d{
+      position: absolute;
+      right: px2rem(15);
+
+      top:px2rem(25);
+    }
+  }
+
+
+}

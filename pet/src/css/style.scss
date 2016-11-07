@@ -6,47 +6,72 @@ html,body{
   overflow-x:hidden;
   min-width: 320px;
   height:100%;
+  background-color:#f4f4f4;
+}
+
+.btn-s{
+  display: block;
+  background-color: #6ac577;
+  width: px2rem(100);
+  height: px2rem(50);
+  line-height:px2rem(50);
+  text-align: center;
+  color: #fff;
+  font-size: px2rem(22);
+  border-radius: px2rem(8);
+}
+.btn-b{
+  display: block;
+  background-color: #6ac577;
+  width: 90%;
+  height: px2rem(70);
+  line-height:px2rem(70);
+  text-align: center;
+  color: #fff;
+  font-size: px2rem(25);
+  border-radius: px2rem(8);
+}
+time{
+  color: #999;
+  font-size: px2rem(20);
+  line-height: px2rem(20);
+}
+.user-link{
+  position:relative;
+  margin-top: px2rem(20);
   background-color:#fff;
-}
-
-
-html {
-  font-size : 20px*0.8;
-}
-@media only screen and (min-width: 359px){
-  html {
-    font-size: 22.5px*0.8 !important;
+  li{
+    position:relative;
+    height: px2rem(90);
+    line-height: px2rem(90);
+    padding: 0 px2rem(20);
+    border-bottom:1px solid #eee;
+    box-sizing: border-box;
+    a{
+      position: relative;
+      display: block;
+    }
   }
-}
-
-@media only screen and (min-width: 374px){
-  html {
-    font-size: 23.5px*0.8 !important;
+  .Hui-iconfont-feedback1{
+    color: #f9616d;
   }
-}
-
-@media only screen and (min-width: 401px){
-  html {
-    font-size: 25px*0.8 !important;
+  .Hui-iconfont-star{
+    color: #ffd256;
   }
-}
-@media only screen and (min-width: 428px){
-  html {
-    font-size: 26.75px*0.8 !important;
+  .Hui-iconfont-comment{
+    color: #90883c;
   }
-}
-@media only screen and (min-width: 481px){
-  html {
-    font-size: 30px*0.8 !important;
+  .txt{
+    color: #333;
+    font-size: px2rem(32);
   }
-}
-@media only screen and (min-width: 569px){
-  html {
-    font-size: 35px*0.8 !important;
-  }
-}
-@media only screen and (min-width: 641px){
-  html {
-    font-size: 40px*0.8 !important;
+  .icon-right{
+    position: absolute;
+    right: px2rem(20);
+    top:50%;
+    margin-top: px2rem(-15);
+    font-size: px2rem(30);
+    line-height:px2rem(30);
+    color: #999;
   }
 }

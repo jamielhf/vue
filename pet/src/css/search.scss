@@ -10,16 +10,19 @@
 		position: relative;
 		display: block;
 		width: 90%;
-		height: px2rem(70);
-		top:px2rem(15);
-		background-color: #fff;
-		border-radius: px2rem(70);
-		font-size: px2rem(30);
-		line-height: px2rem(70);
-		padding-left: px2rem(30);
+		height: px2rem(60);
+		top:px2rem(20);
+		background-color: $bColor*1.5;
+		border-radius: px2rem(10);
+		font-size: px2rem(28);
+		line-height: px2rem(60);
+		padding-left: px2rem(32);
 		box-sizing: border-box;
 		color: #666;
 		border:0;
 
+		&::-webkit-input-placeholder{
+			color: #fff;
+		}
 	}
 }

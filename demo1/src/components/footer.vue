@@ -11,7 +11,6 @@
 
 
 
-
 <script>
     require('../css/footer.scss');
 

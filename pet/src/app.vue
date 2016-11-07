@@ -2,12 +2,13 @@
 <template>
     <div>
     
-        <com-header v-bind:my-page="$route.name"></com-header>
+        <com-header ></com-header>
          <transition name="fade" mode="out-in">
                 <router-view></router-view>
             </transition>
-        <com-footer v-bind:my-page="page"></com-footer>
-      
+        <com-footer v-show="isFooter"></com-footer>
+
+
     </div>
 </template>
 <style>
@@ -15,28 +16,39 @@
         background-color:#fff;
     }
 </style>
-<script>
+<script >
 
 import Header from './components/header';
 import Footer from './components/footer';
 import Index from './page/index';
-require('./css/app.scss');
 
+
+require('./css/app.scss');
+require('./css/style.scss');
 
 var data  = {
     page:'index'
-}
+};
 
     export default{
-        data(){
+        data:function(){
             return data
         },
+        created:function(){
 
+            if(this.$route.name==undefined){
+                this.$router.push('index');
+            }
+        },
+        computed:{
+            isFooter:function () {
+                return this.$store.state.comm.indexConf.isFooter;
+            }
+        },
         components:{
             comHeader:Header,
             comFooter:Footer,
             comIndex:Index
         }
-
     }
 </script>

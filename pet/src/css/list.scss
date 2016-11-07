@@ -1,0 +1,119 @@
+@import "base/min";
+.com-list{
+  position: relative;
+  margin-top: px2rem(20);
+  margin-bottom: px2rem(120);
+  background-color: #f4f4f4;
+  .title{
+    position: relative;
+    height:px2rem(60);
+    background: #fff;
+    font-size: px2rem(30);
+    color: $fontC;
+    line-height: px2rem(60);
+    text-align: center;
+    border-bottom:1px solid #eee;
+  }
+  .list-li{
+    background-color: #fff;
+    margin-top: px2rem(20);
+    position: relative;
+    padding: 0 px2rem(15) px2rem(30);
+    box-sizing: border-box;
+    &:first-child{
+      margin-top: 0;
+    }
+    .user{
+      position: relative;
+      height: px2rem(120);
+
+      img{
+        display: block;
+        width: px2rem(100);
+        height: px2rem(100);
+        margin:px2rem(10) 0 0 px2rem(10);
+        border-radius: 100%;
+        float: left;
+      }
+      .name{
+        width: px2rem(400);
+        float: left;
+        margin-left: px2rem(20);
+        p{
+          padding-top: px2rem(15);
+          line-height: px2rem(40);
+          color: #333;
+          font-size: px2rem(30);
+        }
+
+      }
+      .tag{
+        position: relative;
+        top:0;
+        width: 100%;
+        span{
+          display: inline-block;
+          width: px2rem(60);
+          height: px2rem(30);
+          line-height: px2rem(30);
+          font-size: px2rem(14);
+          text-align: center;
+          border:1px solid $bColor;
+          background-color: #fff;
+          border-radius: px2rem(5);
+          color: $bColor;
+          margin-right: px2rem(10);
+        }
+      }
+      .btn-d{
+        position: absolute;
+        right: px2rem(15);
+        background-color: #6ac577;
+        width: px2rem(100);
+        height: px2rem(50);
+        line-height:px2rem(50);
+        text-align: center;
+        color: #fff;
+        font-size: px2rem(22);
+        border-radius: px2rem(8);
+        top:px2rem(25);
+      }
+    }
+    .detail{
+      position: relative;
+      p{
+        font-size: px2rem(26);
+        width: 100%;
+        padding: 0 px2rem(10);
+        box-sizing: border-box;
+        color: #666;
+      }
+      img{
+        width: 100%;
+        height: 100%;
+      }
+      .img-box{
+        position: relative;
+        width: 100%;
+
+        li{
+          float: left;
+          width: 100%;
+          height: px2rem(710);
+        }
+
+        &.r3{
+          li{
+            margin: 0 px2rem(5) px2rem(10);
+            width: px2rem(230);
+            height: px2rem(230);
+
+
+          }
+        }
+      }
+    }
+
+
+  }
+}

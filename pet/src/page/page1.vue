@@ -13,7 +13,7 @@
 <script>
 
     export default{
-        data(){
+        data:function(){
             return{
                 data:'page1'
             }

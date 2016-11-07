@@ -1,0 +1,86 @@
+{
+  "data":{
+    "code":"1000",
+    "msg":"success",
+    "data":[
+      {
+        "name":"jamie",
+        "tag":["标签1","标签2"],
+        "userIcon":"/src/images/cc.jpg",
+        "title":"这是一只猫",
+        "imgGrounp":["/src/images/cc.jpg","/src/images/img.jpg"],
+        "articleId":"1",
+        "userId":"1",
+        "detail":"这是详情，这是详情",
+        "time":"20161102 10:35",
+        "comment":[
+          {
+            "commentId":"1",
+            "name":"jamie",
+            "userIcon":"/src/images/cc.jpg",
+            "content":"123123",
+            "userId":"3",
+            "reply":[
+              {
+                "r_name":"回复的人",
+                "name":"jamie",
+                "content":"回复的内容",
+                "userId":"3",
+                "r_userId":"4"
+
+              },
+              {
+                "r_name":"jamie",
+                "name":"被回复的人",
+                "content":"回复的内容",
+                "userId":"4",
+                "r_userId":"3"
+
+              }
+            ]
+          },
+          {
+            "commentId":"1",
+            "name":"jamie",
+            "userIcon":"/src/images/cc.jpg",
+            "content":"123123",
+            "userId":"3",
+            "reply":[
+              {
+                "r_name":"回复的人",
+                "name":"jamie",
+                "content":"回复的内容",
+                "userId":"3",
+                "r_userId":"4"
+
+              },
+              {
+                "r_name":"jamie",
+                "name":"被回复的人",
+                "content":"回复的内容",
+                "userId":"4",
+                "r_userId":"3"
+
+              },
+              {
+                "r_name":"回复的人",
+                "name":"jamie",
+                "content":"casdfasdf",
+                "userId":"4",
+                "r_userId":"3"
+
+              }
+            ]
+          },
+          {
+            "commentId":"2",
+            "name":"第三挑记录",
+            "userIcon":"/src/images/cc.jpg",
+            "content":"123123",
+            "userId":"3"
+          }
+        ]
+      }
+    ]
+  }
+}

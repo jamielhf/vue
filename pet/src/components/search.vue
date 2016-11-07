@@ -13,7 +13,7 @@
 
 require('../css/search.scss');
  export default{
-    data(){
+    data:function(){
       return {}
     },
  }
