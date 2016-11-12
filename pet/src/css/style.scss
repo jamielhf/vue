@@ -7,6 +7,9 @@ html,body{
   min-width: 320px;
   height:100%;
   background-color:#f4f4f4;
+  .iconfont{
+    font-size: px2rem(36);
+  }
 }
 
 .btn-s{
@@ -22,14 +25,15 @@ html,body{
 }
 .btn-b{
   display: block;
-  background-color: #6ac577;
+  background-color: $bColor;
   width: 90%;
-  height: px2rem(70);
-  line-height:px2rem(70);
+  height: px2rem(80);
+  line-height:px2rem(80);
   text-align: center;
   color: #fff;
-  font-size: px2rem(25);
+  font-size: px2rem(32);
   border-radius: px2rem(8);
+  margin: 0 auto;
 }
 time{
   color: #999;
@@ -52,6 +56,9 @@ time{
       display: block;
     }
   }
+  .Hui-iconfont-yiguanzhu{
+    color: #5197f9;
+  }
   .Hui-iconfont-feedback1{
     color: #f9616d;
   }
@@ -65,13 +72,14 @@ time{
     color: #333;
     font-size: px2rem(32);
   }
-  .icon-right{
-    position: absolute;
-    right: px2rem(20);
-    top:50%;
-    margin-top: px2rem(-15);
-    font-size: px2rem(30);
-    line-height:px2rem(30);
-    color: #999;
-  }
+
+}
+.icon-right{
+  position: absolute;
+  right: px2rem(20);
+  top:50%;
+  margin-top: px2rem(-15);
+  font-size: px2rem(30);
+  line-height:px2rem(30);
+  color: #999;
 }

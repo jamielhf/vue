@@ -1,0 +1,46 @@
+@import "base/min";
+.add-pet{
+  li{
+    height: px2rem(110);
+    line-height: px2rem(110);
+    input{
+      position: absolute;
+      right: px2rem(10);
+      height: px2rem(90);
+      line-height: px2rem(90);
+      top:px2rem(10);
+      width: px2rem(200);
+      text-align: center;
+      border: 0;
+      color: #666;
+      font-size: px2rem(30);
+    }
+  }
+  .sex{
+    position: absolute;
+    right: px2rem(20);
+    top:0;
+  }
+  .p3{
+    color: #999;
+    font-size: px2rem(32);
+    margin-right: px2rem(20);
+  }
+  .gg{
+    font-size: px2rem(50);
+    color: #999;
+    &.act{
+      color: #5197f9;
+    }
+  }
+  .mm{
+    font-size: px2rem(50);
+    color: #999;
+    &.act{
+      color: $bColor;
+     }
+  }
+  .btn-b{
+    margin-top: px2rem(50);
+  }
+}

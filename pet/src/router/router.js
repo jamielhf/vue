@@ -9,6 +9,8 @@ import Page1 from '../page/page1';
 import Home from '../page/home';
 import Article from '../page/article';
 import HomeUserInfo from '../page/homeUserInfo';
+import MyPet from '../page/myPet';
+import AddPet from '../page/addPet';
 
 Vue.use(VueRouter);
 
@@ -20,15 +22,20 @@ const routes = [
 
             { path: 'page1', name:'page1', component: Page1 },
 
-            { path: 'home/:id', name:'home', component: Home },
+            { path: 'home', name:'home', component: Home},
 
             { path: 'HomeUserInfo/:uid', name:'homeUserInfo', component: HomeUserInfo },
 
             { path:'article/:id', name:'article', component : Article},
 
+            { path:'home/mypet', name:'myPet', component : MyPet},
+
+            { path:'home/mypet/addpet', name:'addPet', component : AddPet},
+
         ]
     }
 ];
+
 
 
 const router = new VueRouter({

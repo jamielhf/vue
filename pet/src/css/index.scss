@@ -12,6 +12,7 @@
       display: flex;
       flex-direction:column;
       justify-content:center;
+      padding:px2rem(10) 0;
       p{
         text-align:center;
         color: $fontC;
@@ -20,8 +21,8 @@
       span{
         display: block;
         margin: 0 auto;
-        font-size: px2rem(80);
-        line-height: px2rem(80);
+        font-size: px2rem(60);
+        line-height: px2rem(60);
       }
     }
   }

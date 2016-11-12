@@ -5,8 +5,8 @@
             <com-search></com-search>
         </div>
         <div class="title" v-show="!isShowSearch">
-                <a  v-show="isBack" class="back t-icon" @click="goBack"><span class="Hui-iconfont icon Hui-iconfont-slider-left"></span></a>
-                <a  v-show="isShare" class="share t-icon" ><span class="Hui-iconfont icon Hui-iconfont-share"></span></a>
+                <a  v-show="isBack" class="back t-icon" @click="goBack"><span class="iconfont icon icon-xiangzuojiantou"></span></a>
+                <a  v-show="isShare" class="share t-icon" ><span class="iconfont icon icon-fenxiang-1"></span></a>
              <p>{{title}}</p>
         </div>
     </div>

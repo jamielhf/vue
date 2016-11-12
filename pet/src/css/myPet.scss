@@ -1,0 +1,59 @@
+@import "base/min";
+.my-pet{
+  ul li{
+    position: relative;
+    width: 100%;
+    float: left;
+    height: px2rem(130);
+    line-height: px2rem(130);
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+    padding: px2rem(20);
+    }
+  .p1{
+    font-size: px2rem(30);
+    width: 60%;
+    line-height: px2rem(40);
+    float: left;
+    margin-left: px2rem(20);
+  }
+  .info{
+    position: relative;
+    float: left;
+    margin-left: px2rem(20);
+    margin-top: px2rem(10);
+    span{
+      font-size: px2rem(26);
+      color: #999;
+      line-height: 150%;
+      float: left;
+    }
+    span:first-child{
+      font-size: px2rem(24);
+      border:1px solid $bColor;
+      color: $bColor;
+      box-sizing: border-box;
+      padding: 0 px2rem(10);
+      border-radius: px2rem(5);
+      margin-right: px2rem(30);
+    }
+  }
+  img{
+    position: relative;
+    width: px2rem(90);
+    height: px2rem(90);
+    float: left;
+    border-radius:100%;
+
+  }
+  .add-pet{
+    display: block;
+    text-align: center;
+    height: px2rem(110);
+    line-height: px2rem(110);
+    font-size: px2rem(30);
+    background-color: #fff;
+    color: #666;
+  }
+}

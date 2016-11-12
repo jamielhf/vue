@@ -1,8 +1,9 @@
 <template>
     <div class="img-scroll">
         <ul class="clearfix" >
-            <li v-for="item in img" @touchstart="start" @touchmove="move">
-                <a><img :src=item.src></a>
+            <li v-for="item in doImgData" @touchstart="start" @touchmove="move" @touchend = "end">
+                <a ><img :src=item.img></a>
+                <!--<a :href="item.imgUrl"><img :src=item.img></a>-->
             </li>
         </ul>
         <div class="img-nav">
@@ -19,76 +20,128 @@
     export default {
         data:function(){
           return {
-              img : [
-                  {src: '/src/images/img.jpg'},
-                  {src: '/src/images/cc.jpg'},
-                  {src: '/src/images/img.jpg'},
-                  {src: '/src/images/cc.jpg'},
-                  {src: '/src/images/img.jpg'}
-              ],
+              img :{},
               scroll:{
                   sTime:null,
-                  width:document.body.clientWidth*0.35,
+                  width:document.body.clientWidth,
                   w:0,             //移动的宽度
-                  t:1,          // 1是向左滑动，-1是向右滑动
                   startX:0,    //开始的x坐标,
+                  endX:0,    //开始的x坐标,
+                  actIndex:0,
                   oUl:null,
                   oLi:null,
-                  isMove:false
+                  changeX:0,
+                  imgL:0,
+                  isMoving:false
               }
           }
         },
-        mounted:function () {
+
+        beforeUpdate:function () {
             let vm = this,
             d = vm.scroll;
             d.oUl = document.querySelector('.img-scroll ul');
             d.oLi = d.oUl.querySelectorAll('li');
-            d.oUl.style.width = d.oLi.length*100+"%";
+            console.log(vm.scroll.imgL);
+            d.oUl.style.width = vm.scroll.imgL*100+"%";
+
             this.myScroll();
+        },
+        props:['imgData'],
+        computed:{
+            doImgData:function () {
+                let vm = this;
+                if(this.imgData.code==1000){
+                    this.img = this.imgData.data;
+                    vm.scroll.imgL = this.img.length;
+                    return this.img;
+                }
+            }
         },
         methods:{
             //图片滚动
-            myScroll:function(l){
+            myScroll:function(){
                 let vm = this;
-                let d = vm.scroll;
-                /*
-                * 每隔5秒自动移动，到最后一张的时候往回移动
-                * */
-                d.sTime =  setInterval(function(){
 
-                   vm.circulate()
-                },3000)
             },
             //循环滚动图片
             circulate:function () {
-                let vm = this;
-                let d = vm.scroll;
-                if(d.w< d.oLi.length-1&&d.t==1||d.w==0){
-                    d.t = 1;
-                }else if(d.w!=0){
-                    d.t = -1;
-                }
-                d.w = d.t+d.w;
-                d.oUl.style.right = d.w*100+'%';
+
+            },
+            end:function (e) {
+                let vm = this,
+                d = vm.scroll;
+                d.endX = e.changedTouches[0].clientX;
+                let c =  d.startX - e.changedTouches[0].clientX;
+                    if(Math.abs(c)<=d.width*0.4){
+
+                        d.oUl.style.webkitTransform = 'translate3d(-'+ d.actIndex * d.width+'px,0,0)';
+                    }
+
+
             },
             start:function (e) {
-                let vm = this;
-                vm.scroll.startX = e.touches[0].clientX;
+                let vm = this,
+                d = vm.scroll;
+                d.startX = e.changedTouches[0].clientX;
             },
             move:function (e) {
                 let vm = this,
-                    d = vm.scroll,
-                    s = e.touches[0].clientX - d.startX;
-                //向右滑动
-                if(s>=d.width&&!d.isMove){
-                    d.t = -1;
-                    vm.handleM(d.t);
-                    //向左滑动
-                }else if(parseInt(-s)>=d.width&&!d.isMove){
-
-                    d.t = 1;
-                    vm.handleM(d.t);
+                d = vm.scroll;
+                let c =  d.startX - e.changedTouches[0].clientX;
+                d.changeX = d.actIndex * d.width + c;
+                if(!d.isMoving){
+                    d.oUl.style.webkitTransform = 'translate3d(-'+ d.changeX+'px,0,0)';
                 }
+                if(c>=0){
+
+                    if(Math.abs(c)>=d.width*0.4&&!d.isMoving){
+                        d.isMoving = true;
+                        this.next();
+                    }
+                }else{
+
+                    if(Math.abs(c)>=d.width*0.4&&!d.isMoving){
+
+                        d.isMoving = true;
+                        this.prev();
+                    }
+                }
+
+
+
+
+            },
+            /*
+            * 下一页
+            * */
+            next:function () {
+                let vm = this,
+                  d = vm.scroll;
+                  if(d.actIndex<d.imgL-1){
+                      d.actIndex ++;
+                  }
+                    d.changeX =  d.actIndex * d.width;
+                    d.oUl.style.webkitTransform = 'translate3d(-'+d.changeX+'px,0,0)';
+                    setTimeout(function () {
+                        d.isMoving = false;
+                    },300)
+
+            },
+            /*
+             * 上一页
+             * */
+            prev:function () {
+                let vm = this,
+                 d = vm.scroll;
+                if(d.actIndex>0){
+                    d.actIndex --;
+                }
+                d.changeX =  d.actIndex * d.width;
+                d.oUl.style.webkitTransform = 'translate3d(-'+d.changeX+'px,0,0)';
+                setTimeout(function () {
+                    d.isMoving = false;
+                },300)
 
             },
             handleM:function (t) {

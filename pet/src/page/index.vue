@@ -1,10 +1,10 @@
 <template>
      <div class="index">
-         <com-img-scroll></com-img-scroll>
+         <com-img-scroll :img-data="imgData"></com-img-scroll>
         <div class="center">
-          <a class="list"><span class="Hui-iconfont icon">&#xe648;</span><p>猫</p></a>
-          <a class="list"><span class="Hui-iconfont icon">&#xe648;</span><p>狗</p></a>
-          <a class="list"><span class="Hui-iconfont icon">&#xe648;</span><p>其他</p></a>
+          <a class="list"><span class="icon-sheshixiaomao iconfont icon"></span><p>猫</p></a>
+          <a class="list"><span class="icon-sheshixiaogou iconfont icon"></span><p>狗</p></a>
+          <a class="list"><span class="icon-yangyouchongwu iconfont icon"></span><p>其他</p></a>
         </div>
          <com-list v-bind:list-data="resData"></com-list>
          <com-loading v-if="loading"></com-loading>
@@ -24,7 +24,8 @@ require('../css/index.scss');
             return{
                 data:'index',
                 num:1,
-                resData:{}
+                resData:{},
+                imgData:{}
             }
         },
         created () {
@@ -58,15 +59,29 @@ require('../css/index.scss');
             fetchData:function () {
 
                 var vm = this;
-            
-
 
                 vm.$store.commit('isLoading',true);
 
-                this.$http.get('/json.json?!23').then(function (res) {
-                    vm.resData = res.body.data;
+                /*
+                 * 获取图片列表信息
+                 *
+                 * */
+                this.$http.get('/index/getImgList').then(function (res) {
+                    let a = JSON.parse(res.body);
+                    vm.imgData = a.data;
+
+
+                });
+                /*
+                 * 获取首页列表信息
+                 * */
+                this.$http.get('/index/getList').then(function (res) {
+                    let a = JSON.parse(res.body);
+                    vm.resData = a.data;
                     vm.$store.commit('isLoading',false);
-                })
+                });
+
+
 
 
             }

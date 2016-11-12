@@ -1,10 +1,10 @@
 
 <template>
-    <div>
+    <div class="com-app">
     
         <com-header ></com-header>
-         <transition name="fade" mode="out-in">
-                <router-view></router-view>
+         <transition :name="transitionName" >
+                <router-view class="child-view"></router-view>
             </transition>
         <com-footer v-show="isFooter"></com-footer>
 
@@ -26,18 +26,25 @@ import Index from './page/index';
 require('./css/app.scss');
 require('./css/style.scss');
 
-var data  = {
-    page:'index'
-};
+
 
     export default{
         data:function(){
-            return data
+            return {
+                transitionName: 'slide-left'
+            }
         },
         created:function(){
 
             if(this.$route.name==undefined){
                 this.$router.push('index');
+            }
+        },
+        watch: {
+            '$route' (to, from) {
+                const toDepth = to.path.split('/').length;
+                const fromDepth = from.path.split('/').length;
+                this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
             }
         },
         computed:{

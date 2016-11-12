@@ -5,32 +5,32 @@
                 <router-link to="/index"  class="link-box ">
                     <span class="txt">头像</span>
                     <img src="/src/images/img1.jpg">
-                    <span class="Hui-iconfont Hui-iconfont-arrow2-right icon-right"></span>
+                    <span class="iconfont icon-xiangyoujiantou icon-right"></span>
                 </router-link>
             </li>
             <li>
                 <router-link to="/index"  class="link-box">
                     <span class="txt">昵称</span>
                     <p>jamie</p>
-                    <span class="Hui-iconfont Hui-iconfont-arrow2-right icon-right"></span>
+                    <span class="iconfont icon-xiangyoujiantou icon-right"></span>
                 </router-link>
             </li>
             <li>
                 <router-link to="/index"  class="link-box">
                     <span class="txt">性别</span>
-                    <span class="Hui-iconfont Hui-iconfont-arrow2-right icon-right"></span>
+                    <span class="iconfont icon-xiangyoujiantou icon-right"></span>
                 </router-link>
             </li>
             <li>
                 <router-link to="/index"  class="link-box">
                     <span class="txt">个人说明</span>
-                    <span class="Hui-iconfont Hui-iconfont-arrow2-right icon-right"></span>
+                    <span class="iconfont icon-xiangyoujiantou icon-right"></span>
                 </router-link>
             </li>
             <li>
                 <router-link to="/index"  class="link-box">
                     <span class="txt">城市</span>
-                    <span class="Hui-iconfont Hui-iconfont-arrow2-right icon-right"></span>
+                    <span class="iconfont icon-xiangyoujiantou icon-right"></span>
                 </router-link>
             </li>
         </ul>

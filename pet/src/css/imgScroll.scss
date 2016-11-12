@@ -5,10 +5,13 @@
   width: 100%;
   overflow: hidden;
   ul{
+    transition:1s ease;
+    -webkit-transition:1s ease;
     position: relative;
     width: 100%;
     right:0;
-    -webkit-transition:right 1s;
+    overflow: hidden;
+    height: px2rem(300);
   }
   li{
     width: px2rem(750);

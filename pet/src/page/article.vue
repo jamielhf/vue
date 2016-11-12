@@ -61,9 +61,12 @@ require('../css/article.scss');
 
             let id = this.$route.params.id;
             this.$store.state.reply.articleId = id;
-            this.$http.get('/json2.json',{"articleId":id}).then(function (res) {
+            this.$http.get('/article/getData',{"articleId":id}).then(function (res) {
+                let a = JSON.parse(res.body);
 
-                vm.resData = res.body.data.data[0];
+                vm.resData = a.data.data[0];
+
+//                vm.resData = res.body.data.data[0];
 
                 vm.$store.state.reply.comment = vm.resData.comment;
 

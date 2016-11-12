@@ -10,7 +10,7 @@
                         <img :src="v.userIcon">
                         <p class="name">{{v.name}}</p>
                         <time>{{v.time}}</time>
-                        <a @click="doReply" :commentId="v.commentId" :name="v.name"  class="reply"><span class="Hui-iconfont icon Hui-iconfont-comment"></span>回复</a>
+                        <a @click="doReply" :commentId="v.commentId" :name="v.name"  class="reply"><span class="iconfont icon icon-more2"></span>回复</a>
                     </div>
                     <div class="c-bottom">
 
