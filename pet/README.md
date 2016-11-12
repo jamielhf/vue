@@ -1,6 +1,12 @@
 #vue
-vue学习项目 宠物测试
+vue学习项目 宠物领养
 
-关于项目的dom操作，只用vue还是不够方便，还是需要使用其他的库，如j	q
+webpack的配置之前是自己写的，但看过vue-cli后觉得那个更好，所以就用vue-cli webpack-simple那个，新手还是用simple的版本好点
+  
+数据的话暂时还没做后端，所以用mock.js模拟
 
-之前还是写原生的js来操作dom的，但是遇到插入dom的时候就太麻烦了。。最后还是加入了zepto
+
+ 启动<br>
+  <code>
+  npm i && npm run dev
+  </code>
