@@ -35,7 +35,7 @@
 <script>
     import Comment from '../components/comment.vue';
     import Reply from '../components/reply';
-
+    import axios from 'axios';
 
 require('../css/article.scss');
     export default {
@@ -57,21 +57,23 @@ require('../css/article.scss');
                 isBack:true,
                 isShare:true,
                 title:'详情页'
-            })
+            });
 
             let id = this.$route.params.id;
             this.$store.state.reply.articleId = id;
-            this.$http.get('/article/getData',{"articleId":id}).then(function (res) {
-                let a = JSON.parse(res.body);
 
-                vm.resData = a.data.data[0];
-
-//                vm.resData = res.body.data.data[0];
+            axios.get('/article/getData',{
+                "articleId":id
+            }).then(function (res) {
+                console.log(res);
+                vm.resData = res.data.data.data[0];
 
                 vm.$store.state.reply.comment = vm.resData.comment;
 
                 vm.$store.commit('isLoading',false);
             })
+
+
         },
         components:{
             comComment:Comment,

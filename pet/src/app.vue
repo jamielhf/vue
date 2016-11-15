@@ -4,8 +4,10 @@
     
         <com-header ></com-header>
          <transition :name="transitionName" >
-                <router-view class="child-view"></router-view>
-            </transition>
+
+                  <router-view class="child-view"></router-view>
+
+         </transition>
         <com-footer v-show="isFooter"></com-footer>
 
 

@@ -36,15 +36,12 @@
               }
           }
         },
-
         beforeUpdate:function () {
             let vm = this,
             d = vm.scroll;
             d.oUl = document.querySelector('.img-scroll ul');
             d.oLi = d.oUl.querySelectorAll('li');
-            console.log(vm.scroll.imgL);
             d.oUl.style.width = vm.scroll.imgL*100+"%";
-
             this.myScroll();
         },
         props:['imgData'],

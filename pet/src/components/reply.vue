@@ -7,7 +7,7 @@
 
 <script>
 require('../css/reply.scss');
-
+import axios from 'axios';
     export default{
         data: function () {
             return {
@@ -39,8 +39,8 @@ require('../css/reply.scss');
 
 
 
-                    this.$http.get('/json1.json',{val:val,uid:this.$store.state.reply.articleId}).then(function (res) {
-                        vm.resData = res.body.data;
+                axios.get('/json1.json',{val:val,uid:this.$store.state.reply.articleId}).then(function (res) {
+                        vm.resData = res.data.data;
 
                         if(vm.resData.code==1000){
                             e.target.parentNode.querySelector('input').value = '';

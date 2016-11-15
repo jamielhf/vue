@@ -17,6 +17,7 @@
 import imgScroll from '../components/imgScroll.vue';
 import list from '../components/list.vue';
 import loading from '../components/loading.vue';
+import axios from 'axios';
 
 require('../css/index.scss');
     export default{
@@ -31,6 +32,8 @@ require('../css/index.scss');
         created () {
             // 组件创建完后获取数据，
             // 此时 data 已经被 observed 了
+
+
             this.fetchData();
             //head的修改
 
@@ -66,20 +69,20 @@ require('../css/index.scss');
                  * 获取图片列表信息
                  *
                  * */
-                this.$http.get('/index/getImgList').then(function (res) {
-                    let a = JSON.parse(res.body);
-                    vm.imgData = a.data;
+                axios.get('/index/getImgList').then(function (res) {
 
-
+                    vm.imgData = res.data.data;
                 });
+
                 /*
                  * 获取首页列表信息
                  * */
-                this.$http.get('/index/getList').then(function (res) {
-                    let a = JSON.parse(res.body);
-                    vm.resData = a.data;
+                axios.get('/index/getList').then(function (res) {
+                    vm.resData = res.data.data;
                     vm.$store.commit('isLoading',false);
+
                 });
+
 
 
 
