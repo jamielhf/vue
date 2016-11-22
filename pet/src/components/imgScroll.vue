@@ -2,7 +2,7 @@
     <div class="img-scroll">
         <ul class="clearfix" >
             <li v-for="item in doImgData" @touchstart="start" @touchmove="move" @touchend = "end">
-                <a ><img :src=item.img></a>
+                <a :href=item.imgUrl><img :src=item.img></a>
                 <!--<a :href="item.imgUrl"><img :src=item.img></a>-->
             </li>
         </ul>
@@ -36,23 +36,24 @@
               }
           }
         },
-        beforeUpdate:function () {
+        updated:function () {
             let vm = this,
             d = vm.scroll;
             d.oUl = document.querySelector('.img-scroll ul');
             d.oLi = d.oUl.querySelectorAll('li');
+            vm.scroll.imgL = d.oLi.length;
             d.oUl.style.width = vm.scroll.imgL*100+"%";
             this.myScroll();
         },
-        props:['imgData'],
+        props:{
+            imgData:{
+                type:Array,
+
+            }
+        },
         computed:{
             doImgData:function () {
-                let vm = this;
-                if(this.imgData.code==1000){
-                    this.img = this.imgData.data;
-                    vm.scroll.imgL = this.img.length;
-                    return this.img;
-                }
+               return this.imgData
             }
         },
         methods:{
@@ -70,9 +71,10 @@
                 d = vm.scroll;
                 d.endX = e.changedTouches[0].clientX;
                 let c =  d.startX - e.changedTouches[0].clientX;
-                    if(Math.abs(c)<=d.width*0.4){
+                    if(Math.abs(c)<=d.width*0.5){
 
                         d.oUl.style.webkitTransform = 'translate3d(-'+ d.actIndex * d.width+'px,0,0)';
+                        d.oUl.style.webkitTransition = 'all 0.5s';
                     }
 
 
@@ -89,25 +91,28 @@
                 d.changeX = d.actIndex * d.width + c;
                 if(!d.isMoving){
                     d.oUl.style.webkitTransform = 'translate3d(-'+ d.changeX+'px,0,0)';
+                    d.oUl.style.webkitTransition = 'all 0.1s cubic-bezier(0,1,0,1)';
+                    let t =Math.abs(c)/150*-0.5+0.5;
+//                   log(c,t)
+//                    d.oUl.style.webkitTransitionTimingFunction = 'cubic-bezier(0,'+t+',0,'+t+')';
+                    //todo 这里的transition-timing-function属性应该需要根据移动多少来变化
+//                    d.oUl.style.webkitTransform = 'translate3d(-'+ d.changeX+'px,0,0)';
+//
                 }
                 if(c>=0){
 
-                    if(Math.abs(c)>=d.width*0.4&&!d.isMoving){
+                    if(Math.abs(c)>=d.width*0.5&&!d.isMoving){
                         d.isMoving = true;
                         this.next();
                     }
                 }else{
 
-                    if(Math.abs(c)>=d.width*0.4&&!d.isMoving){
+                    if(Math.abs(c)>=d.width*0.5&&!d.isMoving){
 
                         d.isMoving = true;
                         this.prev();
                     }
                 }
-
-
-
-
             },
             /*
             * 下一页
@@ -119,7 +124,9 @@
                       d.actIndex ++;
                   }
                     d.changeX =  d.actIndex * d.width;
+//                d.oUl.style.webkitTransitionTimingFunction = 'cubic-bezier(0,1,0,1)';
                     d.oUl.style.webkitTransform = 'translate3d(-'+d.changeX+'px,0,0)';
+                    d.oUl.style.webkitTransition = 'all 0.5s';
                     setTimeout(function () {
                         d.isMoving = false;
                     },300)
@@ -136,6 +143,7 @@
                 }
                 d.changeX =  d.actIndex * d.width;
                 d.oUl.style.webkitTransform = 'translate3d(-'+d.changeX+'px,0,0)';
+                d.oUl.style.webkitTransition = 'all 0.5s';
                 setTimeout(function () {
                     d.isMoving = false;
                 },300)

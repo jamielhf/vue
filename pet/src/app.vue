@@ -1,15 +1,13 @@
 
 <template>
     <div class="com-app">
-    
-        <com-header ></com-header>
+
+        <com-header :commData = "commConf" ></com-header>
          <transition :name="transitionName" >
 
                   <router-view class="child-view"></router-view>
-
          </transition>
-        <com-footer v-show="isFooter"></com-footer>
-
+        <com-footer v-show="commConf.isFooter"></com-footer>
 
     </div>
 </template>
@@ -41,6 +39,9 @@ require('./css/style.scss');
             if(this.$route.name==undefined){
                 this.$router.push('index');
             }
+
+            this.$store.commit('COMM_CONF',{isFooter:true});
+
         },
         watch: {
             '$route' (to, from) {
@@ -50,9 +51,10 @@ require('./css/style.scss');
             }
         },
         computed:{
-            isFooter:function () {
-                return this.$store.state.comm.indexConf.isFooter;
-            }
+
+                commConf:function () {
+                    return  this.$store.getters.commConf
+                },
         },
         components:{
             comHeader:Header,

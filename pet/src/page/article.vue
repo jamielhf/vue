@@ -3,7 +3,7 @@
 
 
         <div class="com-article">
-
+               <div class="a-box">
                 <div class="user">
                     <img :src="resData.userIcon" alt=""/>
                     <div class="name">
@@ -24,18 +24,20 @@
                     <p>  {{resData.detail}}</p>
 
                 </div>
-                <com-comment ></com-comment>
+                <com-comment :replyData = "resData.comment" ></com-comment>
+               </div>
             </div>
 
-        <com-reply v-on:submit="handleSubmit"></com-reply>
+        <com-reply :aid = "resData.articleId" v-show = "isComment"></com-reply>
     </div>
 </template>
 
 
 <script>
     import Comment from '../components/comment.vue';
+    import imgScroll from '../components/imgScroll.vue';
+    import {mapGetters} from 'vuex';
     import Reply from '../components/reply';
-    import axios from 'axios';
 
 require('../css/article.scss');
     export default {
@@ -47,11 +49,8 @@ require('../css/article.scss');
         },
         created:function () {
             let vm = this;
-            //loading的是显示
-            vm.$store.commit('isLoading',true);
-            //head的修改
 
-            vm.$store.commit('changeIndexConf',{
+            vm.$store.commit('COMM_CONF',{
                 isFooter:false,
                 isSearch:false,
                 isBack:true,
@@ -60,21 +59,19 @@ require('../css/article.scss');
             });
 
             let id = this.$route.params.id;
-            this.$store.state.reply.articleId = id;
-
-            axios.get('/article/getData',{
-                "articleId":id
-            }).then(function (res) {
-                console.log(res);
-                vm.resData = res.data.data.data[0];
-
-                vm.$store.state.reply.comment = vm.resData.comment;
-
-                vm.$store.commit('isLoading',false);
-            })
-
+            /*
+            * 获取文章信息
+            * */
+            vm.$store.dispatch('articleGetContent',id);
 
         },
+        computed:{
+            resData(){return this.$store.getters.articleContent},
+            isComment(){return this.$store.getters.isComment}
+
+        }
+
+        ,
         components:{
             comComment:Comment,
             comReply:Reply

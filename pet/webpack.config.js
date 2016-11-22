@@ -46,6 +46,7 @@ module.exports = {
             }
         ]
     },
+    
     resolve: {
         extensions: ['.js', '.vue','.scss'],
         alias: {

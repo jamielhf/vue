@@ -65,7 +65,7 @@
         created:function () {
             //head的修改
 
-            this.$store.commit('changeIndexConf',{
+            this.$store.commit('COMM_CONF',{
                 isFooter:true,
                 isSearch:false,
                 isBack:false,

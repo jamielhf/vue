@@ -44,14 +44,18 @@
 		data:function(){
 			return data
 		},
-		props:['listData'],
+		props:{
+			listData:{
+				type: Array,
+				default: function () {
+					return []
+				}
+			}
+		},
 		computed:{
 			doList:function () {
+				return this.listData;
 
-				if(this.listData.code==1000){
-					this.doListData = this.listData.data;
-					return this.doListData;
-				}
 			}
 		},
 		methods:{

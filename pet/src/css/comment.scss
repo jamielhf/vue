@@ -1,7 +1,10 @@
 @import "base/min";
 
-
+.a-box{
+  margin-bottom: px2rem(150);
+}
 .com-comment{
+
   margin-top: px2rem(20);
   .title{
     background-color: #fff;
@@ -10,6 +13,9 @@
     line-height: px2rem(80);
     color: #999;
     margin-bottom: px2rem(20);
+  }
+  .content{
+    margin-top:px2rem(30);
   }
   .c-list{
     background-color: #fff;
@@ -61,6 +67,11 @@
     }
     .r-p{
       color: #333;
+      a{
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
       span{
         color: #bbb;
         padding-right:px2rem(10);

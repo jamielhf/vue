@@ -1,6 +1,6 @@
 <template>
     <div class="com-comment">
-        <div class="title">评论区</div>
+        <a @click="doComment" 　class="comment-btn btn-b">评  论</a>
         <div class="content">
             <ul class="c-list clearfix">
 
@@ -16,13 +16,15 @@
 
                        <p>{{v.content}}</p>
                        <p  v-for="d in v.reply" class="r-p" >
-                           <span  @click="doReply" :commentId="v.commentId" :uid="d.r_userId" :name="d.r_name">{{d.r_name}} 回复 {{d.name}}</span> {{d.content}}
-                       </p>
+                         <a  @click="doReply" :commentId="v.commentId" :uid="d.r_userId" :name="d.r_name">
+                              <span >{{d.r_name}} 回复 {{d.name}}</span> {{d.content}}
+                         </a>
+                        </p>
                     </div>
                 </li>
 
             </ul>
-            <a @click="doComment" class="comment-btn btn-b">评  论</a>
+
         </div>
 
 
@@ -41,31 +43,87 @@ require('../css/comment.scss');
 
 export default {
     data:function () {
-
-
       return{
+         commentStatus:'',
+         replyName:'',
+          replyStatus:false,
 
       }
     },
 
-    props:['content'],
-    computed:{
-         replyData:function () {
-             return this.$store.state.reply.comment;
-         }
+    props:{
+        replyData:{
+            type:Array
+        }
+
     },
+
     methods:{
-        doReply:function (event) {
-            let p = event.target;
-            let name = p.getAttribute('name');
-            let id = p.getAttribute('commentId');
+        doReply:function (e) {
+
+            let attr = e.target.attributes;
+            let commentId = attr.commentId.value;
+            let name =  attr.name.value;
+
+            if(this.commentStatus == '' ||this.commentStatus == "comment"){
+                this.commentStatus = 'reply';
+                this.replyName =  attr.name.value;
+                this.$store.dispatch('setReply',{
+                    isComment: true,  //是否显示评论框,
+                    name: name,  //是否显示评论框,
+                    cId:commentId ,
+                    type:'reply',  // reply or comment
+                    content:null
+                });
+            }else if(this.replyName != attr.name.value && this.commentStatus == "reply"){
+                this.replyName =  attr.name.value;
+                this.$store.dispatch('setReply',{
+                    isComment: true,  //是否显示评论框,
+                    name: name,  //是否显示评论框,
+                    cId:commentId ,
+                    type:'reply',  // reply or comment
+                    content:null
+                });
+            }else{
+                this.commentStatus = '';
+                this.replyName =  '';
+                this.$store.dispatch('setReply',{
+                    isComment: false,  //是否显示评论框,
+                    name: '',  //是否显示评论框,
+                    cId:'' ,
+                    type:'reply',  // reply or comment
+                    content:null
+                });
+            }
 
 
-            this.$store.commit('reply',{name:name,commentId:id})
+
+
         },
-        doComment:function () {
+        doComment:function (e) {
+                if(this.commentStatus == '' ||this.commentStatus == "reply"){
+                    this.commentStatus = 'comment';
+                    this.$store.dispatch('setReply',{
+                        isComment: true,  //是否显示评论框,
+                        name:'',
+                        cId:'',
+                        type:'comment',  // reply or comment
+                        content:null
+                    });
+                }else if(this.commentStatus=="comment"){
+                    this.commentStatus = '';
+                    this.$store.dispatch('setReply',{
+                        isComment: false,  //是否显示评论框,
+                        name:'',
+                        cId:'',
+                        type:'comment',  // reply or comment
+                        content:null
+                    });
+                }
 
-            this.$store.commit('reply',{name:'',commentId:''})
+
+
+
         }
 
     },

@@ -4,7 +4,8 @@
 .com-article{
   position: relative;
   background-color: #f4f4f4;
-  margin-bottom: px2rem(120);
+  height: calc(100vh - 2.66667rem);
+  overflow: scroll;
   .box{
     position: relative;
   }

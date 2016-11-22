@@ -94,4 +94,50 @@ Random.ctitle();
              }
          }
      )
+
+/*
+* 提交评论
+*
+* */
+     .mock(
+         '/article/submit',
+         {
+             "data":{
+                 "code":"1000",
+                 "msg":"success",
+                 "data":[
+                     {
+                         "name":"@cname",
+                         "tag|1-3":["标签1"],
+                         "userIcon":"@image",
+                         "title":"@ctitle",
+                         "imgGrounp|1-9":["@image"],
+                         "articleId|+1":1,
+                         "userId|+1":1,
+                         "detail":"@cparagraph",
+                         "time":"20161102 10:35",
+                         "comment|2-4":[
+                             {
+                                 "commentId|1-100":1,
+                                 "name":"@cname",
+                                 "userIcon":"@image",
+                                 "content":"@ctitle",
+                                 "userId|1-100":1,
+                                 "reply|6":[
+                                     {
+                                         "r_name":"@cname",
+                                         "name":"jamie",
+                                         "content":"@ctitle",
+                                         "userId":"3",
+                                         "r_userId":"4"
+
+                                     }
+                                 ]
+                             }
+                         ]
+                     }
+                 ]
+             }
+         }
+     )
 export default Mock;

@@ -62,7 +62,7 @@
 
         created:function () {
             //head的修改
-            this.$store.commit('changeIndexConf',{
+            this.$store.commit('COMM_CONF',{
                 isFooter:false,
                 isSearch:false,
                 isBack:true,
@@ -72,7 +72,7 @@
         },
         methods:{
             submitInfo:function () {
-                console.log(this.petName);
+
             },
             choice:function (e) {
                 let s = e.target.attributes.sex.value;

@@ -18,3 +18,8 @@ vue学习项目 宠物领养
 <code>
 npm i && npm run dev
 </code>
+
+>1.0.3 
+>修改了vue-resource，使用axios
+>修改vuex,写法更规范点
+
