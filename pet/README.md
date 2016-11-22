@@ -21,5 +21,6 @@ npm i && npm run dev
 
 >1.0.3 
 >修改了vue-resource，使用axios
+
 >修改vuex,写法更规范点
 
