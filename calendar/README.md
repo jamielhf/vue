@@ -6,8 +6,8 @@
 
 ## demo展示&&项目中的使用
 
-<img style="width:250px;" src="doc/2.gif"/>
-<img style="width:300px;" src="doc/12.png"/>
+<img width = "250" src="doc/2.gif"/>
+<img width = "250" src="doc/12.png"/>
 
 ##目录结构
 
