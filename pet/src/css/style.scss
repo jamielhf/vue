@@ -2,6 +2,7 @@
 
 
 html,body{
+  -webkit-overflow-scrolling : touch;
   width: 100%;
   overflow-x:hidden;
   min-width: 320px;
@@ -82,4 +83,14 @@ time{
   font-size: px2rem(30);
   line-height:px2rem(30);
   color: #999;
+}
+
+.mark{
+  background-color: #000;
+  opacity: 0.5;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  position: absolute;
+  z-index: 99;
 }

@@ -1,7 +1,6 @@
 <template>
     <div>
 
-
         <div class="com-article">
                <div class="a-box">
                 <div class="user">
@@ -59,6 +58,7 @@ require('../css/article.scss');
             });
 
             let id = this.$route.params.id;
+            log(this.$route.params)
             /*
             * 获取文章信息
             * */

@@ -1,22 +1,24 @@
 <template>
-    <div class="com-calendar">
-        <div class="c-header">
-            <div class="c-cancel">cancel</div>
-            <div class="c-ok">ok</div>
-        </div>
-        <div class="c-content">
-            <div class="sel-year">
-                <div class="item-list">2000</div>
-                <div class="item-list">2001</div>
-                <div class="item-list">2002</div>
+    <div class="com-calendar"  >
+        <div class="dp-container">
+            <div class="dp-header">
+                <div class="dp-item dp-left" @click = "hiddenCalendar">cancel</div>
+                <div class="dp-item dp-right" @click = "choiceDate">ok</div>
             </div>
-            <div class="sel-mouths">
-                <div class="item-list">2000</div>
-                <div class="item-list">2000</div>
-            </div>
-            <div class="sel-days">
-                <div class="item-list">2000</div>
-                <div class="item-list">2000</div>
+            <div class="dp-content">
+                <div class="dp-content">
+                    <div class="dp-item" >
+                        <com-date-scroll :select="status" :startTime="startTime" :dType = "'year'" :endTime ="endTime"></com-date-scroll>
+                  </div>
+                    <div class="dp-item" >
+                        <com-date-scroll :select="status"  :dType = "'month'"  ></com-date-scroll>
+
+                    </div>
+                    <div class="dp-item" >
+                        <com-date-scroll  :select="status" :dType = "'day'"  ></com-date-scroll>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -26,7 +28,36 @@
 
 
 <script>
-
+   import dateScroll from './dateScroll.vue';
+   require('../css/calendar');
+    export default {
+        data:function () {
+            return{
+                startTime:1911,
+                endTime:2020,
+                status:false,
+                year:'',
+                month:'',
+                day:''
+            }
+        },
+        components:{
+            comDateScroll:dateScroll
+        },
+        computed: {
+            status:function(){
+                return this.$store.getters.getCalendarOk;
+            }
+        },
+        methods:{
+            choiceDate:function(){
+               this.$store.dispatch('calendarOk',true)
+            },
+            hiddenCalendar:function () {
+                this.$store.dispatch('calendarStatus',false);
+            }
+        }
+    }
 
 
 </script>

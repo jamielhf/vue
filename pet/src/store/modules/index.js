@@ -22,7 +22,7 @@ const getters = {
      * 获取首页列表
      * */
     indexGetList ({ commit }) {
-        commit(types.COMM_LOADING_SHOW);
+        commit(types.COMM_LOADING_STATUS,true);
         api.indexGetList(function (res) {
             commit(types.INDEX_GET_LIST_SUCCESS, { res })
         })
@@ -33,7 +33,7 @@ const getters = {
      indexGetImg({commit}){
          api.indexGetImg(function (res) {
              commit(types.INDEX_GET_IMG_SUCCESS, { res });
-             commit(types.COMM_LOADING_HIDDEN);
+             commit(types.COMM_LOADING_STATUS,false);
 
          })
 

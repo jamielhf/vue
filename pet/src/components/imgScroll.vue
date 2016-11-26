@@ -1,8 +1,8 @@
 <template>
     <div class="img-scroll">
         <ul class="clearfix" >
-            <li v-for="item in doImgData" @touchstart="start" @touchmove="move" @touchend = "end">
-                <a :href=item.imgUrl><img :src=item.img></a>
+            <li v-for="item in doImgData" @touchstart.stop="start" @touchmove.stop="move" @touchend.stop = "end">
+                <a ><img :src=item.img></a>
                 <!--<a :href="item.imgUrl"><img :src=item.img></a>-->
             </li>
         </ul>
@@ -71,12 +71,27 @@
                 d = vm.scroll;
                 d.endX = e.changedTouches[0].clientX;
                 let c =  d.startX - e.changedTouches[0].clientX;
-                    if(Math.abs(c)<=d.width*0.5){
+                if(Math.abs(c)<=d.width*0.35){
 
-                        d.oUl.style.webkitTransform = 'translate3d(-'+ d.actIndex * d.width+'px,0,0)';
-                        d.oUl.style.webkitTransition = 'all 0.5s';
+                    d.oUl.style.webkitTransform = 'translate3d(-'+ d.actIndex * d.width+'px,0,0)';
+                    d.oUl.style.webkitTransition = 'all 0.3s';
+                    d.isMoving = false;
+                }
+                if(c>=0){
+
+                    if(Math.abs(c)>=d.width*0.4&&!d.isMoving){
+                        d.isMoving = true;
+                        this.next();
+                    }
+                }else{
+
+                    if(Math.abs(c)>=d.width*0.4&&!d.isMoving){
+
+                        d.isMoving = true;
+                        this.prev();
                     }
 
+                }
 
             },
             start:function (e) {
@@ -91,28 +106,24 @@
                 d.changeX = d.actIndex * d.width + c;
                 if(!d.isMoving){
                     d.oUl.style.webkitTransform = 'translate3d(-'+ d.changeX+'px,0,0)';
-                    d.oUl.style.webkitTransition = 'all 0.1s cubic-bezier(0,1,0,1)';
+                    d.oUl.style.webkitTransition = 'all 0s';
                     let t =Math.abs(c)/150*-0.5+0.5;
-//                   log(c,t)
-//                    d.oUl.style.webkitTransitionTimingFunction = 'cubic-bezier(0,'+t+',0,'+t+')';
-                    //todo 这里的transition-timing-function属性应该需要根据移动多少来变化
-//                    d.oUl.style.webkitTransform = 'translate3d(-'+ d.changeX+'px,0,0)';
+                }
+//                if(c>=0){
 //
-                }
-                if(c>=0){
-
-                    if(Math.abs(c)>=d.width*0.5&&!d.isMoving){
-                        d.isMoving = true;
-                        this.next();
-                    }
-                }else{
-
-                    if(Math.abs(c)>=d.width*0.5&&!d.isMoving){
-
-                        d.isMoving = true;
-                        this.prev();
-                    }
-                }
+//                    if(Math.abs(c)>=d.width*0.35&&!d.isMoving){
+//                        d.isMoving = true;
+//                        this.next();
+//                    }
+//                }else{
+//
+//                    if(Math.abs(c)>=d.width*0.35&&!d.isMoving){
+//
+//                        d.isMoving = true;
+//                        this.prev();
+//                    }
+//
+//                }
             },
             /*
             * 下一页
@@ -126,7 +137,7 @@
                     d.changeX =  d.actIndex * d.width;
 //                d.oUl.style.webkitTransitionTimingFunction = 'cubic-bezier(0,1,0,1)';
                     d.oUl.style.webkitTransform = 'translate3d(-'+d.changeX+'px,0,0)';
-                    d.oUl.style.webkitTransition = 'all 0.5s';
+                    d.oUl.style.webkitTransition = 'all 0.3s';
                     setTimeout(function () {
                         d.isMoving = false;
                     },300)
@@ -143,12 +154,13 @@
                 }
                 d.changeX =  d.actIndex * d.width;
                 d.oUl.style.webkitTransform = 'translate3d(-'+d.changeX+'px,0,0)';
-                d.oUl.style.webkitTransition = 'all 0.5s';
+                d.oUl.style.webkitTransition = 'all 0.3s';
                 setTimeout(function () {
                     d.isMoving = false;
                 },300)
 
             },
+
             handleM:function (t) {
                 let vm = this,
                     d = vm.scroll;

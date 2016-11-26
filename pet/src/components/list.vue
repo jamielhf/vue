@@ -12,7 +12,7 @@
 					</div>
 				</div>
 				<!--<a class="btn-d">详情{{value.articleId}}</a>-->
-				<router-link :to="{  name: 'article', params: { id: value.articleId }}" class="btn-d btn-s" >详情</router-link>
+				<router-link :to="{  name: 'article', params: { id: value.articleId,uid:{a:123,b:123}}}" class="btn-d btn-s" >详情</router-link>
 
 			</div>
 

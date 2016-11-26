@@ -1,14 +1,20 @@
 
 <template>
-    <div class="com-app">
-
+    <div class="com-app-box">
         <com-header :commData = "commConf" ></com-header>
-         <transition :name="transitionName" >
+        <div class="com-app">
 
-                  <router-view class="child-view"></router-view>
-         </transition>
+
+             <transition :name="transitionName" >
+
+                      <router-view class="child-view"></router-view>
+             </transition>
+        </div>
         <com-footer v-show="commConf.isFooter"></com-footer>
+        <com-calendar :style = "calendar"></com-calendar>
+        <com-loading v-if="loading"></com-loading>
 
+        <div v-show  = "mark" class="mark" @touchmove.stop.prevent ="" @touchstart.stop.prevent =""  @touchend.stop.prevent =""></div>
     </div>
 </template>
 <style>
@@ -21,8 +27,8 @@
 import Header from './components/header';
 import Footer from './components/footer';
 import Index from './page/index';
-
-
+import calendar from './components/calendar.vue';
+import loading from './components/loading.vue';
 require('./css/app.scss');
 require('./css/style.scss');
 
@@ -55,10 +61,22 @@ require('./css/style.scss');
                 commConf:function () {
                     return  this.$store.getters.commConf
                 },
+                mark:function () {
+                    return  this.$store.getters.markStatus
+                },
+                calendar:function () {
+                    return this.$store.getters.getCalendarStatus?{ display:'block'}:{ display:'none'};
+                },
+               loading:function () {
+                   return  this.$store.getters.loading
+               }
+
         },
         components:{
             comHeader:Header,
             comFooter:Footer,
+            comCalendar:calendar,
+            comLoading:loading,
             comIndex:Index
         }
     }

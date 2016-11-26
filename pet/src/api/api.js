@@ -12,8 +12,10 @@ export  default {
 
         axios.get('/index/getList').then(function (res) {
             if(res.data.data.code ==1000){
+                setTimeout(function () {
+                    cb(res.data.data.data);
+                },300)
 
-                cb(res.data.data.data);
             }
 
         });
@@ -25,7 +27,9 @@ export  default {
     indexGetImg:function (cb) {
         axios.get('/index/getImgList').then(function (res) {
             if(res.data.data.code ==1000){
-                cb(res.data.data.data);
+                setTimeout(function () {
+                    cb(res.data.data.data);
+                },300)
             }
 
         });
@@ -39,7 +43,9 @@ export  default {
             "articleId":id
         }).then(function (res) {
             if(res.data.data.code ==1000){
-                cb(res.data.data.data[0]);
+                setTimeout(function () {
+                    cb(res.data.data.data[0]);
+                },300)
             }
         })
     },
@@ -51,8 +57,27 @@ export  default {
         axios.get('/article/submit',{val:val,uid:uid,rid:rname,aid:aid,commentId:commentId}).then(function (res) {
             console.log(val);
             if(res.data.data.code ==1000){
-                cb(res.data.data.data[0]);
+                setTimeout(function () {
+                    cb(res.data.data.data[0]);
+                },300)
             }})
+
+    },
+    /*
+    * 获取用户信息
+    *
+    * */
+    getHomeIndex:function (uid = 123,cb) {
+        axios.get('/home/index',{uid:uid}).then(function (res) {
+
+                if(res.data.data.code ==1000){
+                    setTimeout(function () {
+                        cb(res.data.data.data[0]);
+                    },300)
+
+                }})
+
+
 
     }
 

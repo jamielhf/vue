@@ -7,7 +7,7 @@
           <a class="list"><span class="icon-yangyouchongwu iconfont icon"></span><p>其他</p></a>
         </div>
          <com-list v-bind:list-data="indexListData"></com-list>
-         <com-loading v-if="loading"></com-loading>
+
     </div>
 </template>
 
@@ -16,7 +16,7 @@
 <script>
 import imgScroll from '../components/imgScroll.vue';
 import list from '../components/list.vue';
-import loading from '../components/loading.vue';
+
 import {mapGetters,mapActions} from 'vuex';
 
 require('../css/index.scss');
@@ -26,8 +26,6 @@ require('../css/index.scss');
                 data:'index',
                 num:1,
                 imgData:{},
-                indexListData:{},
-                loading:false
             }
         },
         created () {
@@ -47,24 +45,23 @@ require('../css/index.scss');
                 title:''
             });
 
-            vm.$store.dispatch('indexGetList').then(function () {
-                vm.$store.dispatch('indexGetImg');
-                vm.$store.commit('COMM_CONF',{loading:true})
-
-            });
+             if(vm.$store.state.index.index.img.length==0){
+                 vm.$store.dispatch('indexGetList').then(function () {
+                     vm.$store.dispatch('indexGetImg');
+                 });
+             }
 
 
         },
         components:{
           comImgScroll:imgScroll,
           comList:list,
-          comLoading:loading
         },
         computed: mapGetters({
            // 映射 this.doneCount 到 store.getters.doneTodosCount
             indexListData: 'indexListData',
             indexImgData: 'indexImgData',
-            loading: 'loading',
+
 
         }),
 

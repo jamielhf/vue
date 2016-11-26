@@ -3,7 +3,7 @@
         <ul class="clearfix">
             <li>
 
-                <img src="/src/images/cc.jpg">
+                <img src="http://dummyimage.com/150x150">
                 <p class="p1">名字</p>
                 <div class="info">
                     <span class="kinds">什么种类</span>

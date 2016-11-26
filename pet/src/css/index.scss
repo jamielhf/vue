@@ -10,8 +10,9 @@
     .list{
       flex-grow:1;
       display: flex;
-      flex-direction:column;
-      justify-content:center;
+      display: -webkit-flex;
+      -webkit-flex-direction:column;
+      -webkit-justify-content:center;
       padding:px2rem(10) 0;
       p{
         text-align:center;

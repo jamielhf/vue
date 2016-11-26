@@ -4,7 +4,7 @@
             <li class="user-icon">
                 <router-link to="/index"  class="link-box ">
                     <span class="txt">头像</span>
-                    <img src="/src/images/img1.jpg">
+                    <img src="http://dummyimage.com/150x150">
                     <span class="iconfont icon-xiangyoujiantou icon-right"></span>
                 </router-link>
             </li>

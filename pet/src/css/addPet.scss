@@ -1,5 +1,39 @@
 @import "base/min";
 .add-pet{
+  .none{
+    display: none;
+  }
+  .dateNum{
+    position: relative;
+    right: 0;
+    float: right;
+    margin-right: px2rem(60);
+    font-size: px2rem(32);
+    color: #999;
+  }
+  .op0{
+    opacity: 0;
+  }
+  .pet-icon{
+    position: relative;
+    width: px2rem(120);
+    height:px2rem(120);
+    margin: px2rem(30) auto;
+    input{
+      position: absolute;
+      top:0;
+      width: px2rem(120);
+      height:px2rem(120);
+      z-index: 3;
+    }
+    img{
+      border:1px solid #666;
+      width: px2rem(120);
+      height:px2rem(120);
+      display: block;
+      border-radius: px2rem(120);
+    }
+  }
   li{
     height: px2rem(110);
     line-height: px2rem(110);

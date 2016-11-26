@@ -8,9 +8,8 @@
 
 .child-view {
   position: absolute;
-  top:px2rem(100);
   width: 100%;
-  transition: all .3s cubic-bezier(.55,0,.1,1);
+  transition: all .2s cubic-bezier(.55,0,.1,1);
 }
 .slide-left-enter, .slide-right-leave-active {
   opacity: 0;
@@ -24,4 +23,11 @@
 }
 .com-app{
   position: relative;
+  height: calc(100vh - 2.66667rem);
+  width: 100%;
+  overflow: scroll;
+}
+.com-app-box{
+  position: relative;
+  height: 100vh;
 }

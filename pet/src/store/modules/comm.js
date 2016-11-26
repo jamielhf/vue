@@ -8,40 +8,45 @@ import * as types from '../mutation';
 *
 * */
 const state = {
-    comm:{
+
         isSearch:true,  //是否显示搜索
         isBack:false,   //是否显示返回
         isShare:false,  //是否显示分享
         title:'',  //显示标题内容
         isFooter:false,  //是否显示底部
-        loading:false  //是否显示loading
-    }
+        loading:false,  //是否显示loading,
+        mark:false  //是否显示遮罩,
 };
 
 const actions  = {
     commConf({commit},settings){
         commit(types.COMM_CONF,settings);
+    },
+    markStatus({commit},status){
+        commit(types.COMM_MARK_STATUS,status);
     }
 };
 
 
 const getters = {
-    commConf : state => state.comm,
-    loading : state => state.comm.loading
+    commConf : state => state,
+    loading : state => state.loading,
+    markStatus : state => state.mark,
 };
 
 const mutations = {
     [types.COMM_CONF](state,settings){
-        state.comm = Object.assign(state.comm,settings);
+        state = Object.assign(state,settings);
 
     },
-    [types.COMM_LOADING_SHOW](state){
+    [types.COMM_LOADING_STATUS](state,status){
 
-        state.comm.loading = true
+        state.loading = status
     },
-    [types.COMM_LOADING_HIDDEN](state){
-
-        state.comm.loading = false
+   
+    [types.COMM_MARK_STATUS](state,status){
+        // "use strict";
+        state.mark = status
     }
 };
 

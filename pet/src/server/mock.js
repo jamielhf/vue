@@ -140,4 +140,26 @@ Random.ctitle();
              }
          }
      )
+
+/*
+ * 获取个人信息
+ *
+ * */
+     .mock(
+         '/home/index',
+         {
+             "data":{
+                 "code":"1000",
+                 "msg":"success",
+                 "data":[
+                     {
+                         "name":"@cname",
+                         "tag|1-3":["标签1"],
+                         "userIcon":"@image",
+                         "userId|+1":1
+                     }
+                 ]
+             }
+         }
+     );
 export default Mock;

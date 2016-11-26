@@ -1,9 +1,9 @@
 <template>
     <div class="com-home">
         <div class="user-info clearfix">
-            <router-link to="/homeUserInfo/123" class="link-box clearfix" >
-                <img src="/src/images/cc.jpg">
-                <p>jamie</p>
+            <router-link  :to="{name: 'homeUserInfo', params: { uid: uid}}"   class="link-box clearfix" >
+                <img :src="info.userIcon||'http://dummyimage.com/150x150'">
+                <p>{{info.name}}</p>
                <span class="iconfont icon-xiangyoujiantou icon-right"></span>
             </router-link>
         </div>
@@ -53,13 +53,11 @@
     require('../css/home.scss');
 
 
-    let data = {
-        id:1
-    };
+
     export default{
         data:function(){
             return{
-                data
+                uid:123
             }
         },
         created:function () {
@@ -71,7 +69,16 @@
                 isBack:false,
                 isShare:false,
                 title:'个人首页'
-            })
+            });
+            if(!this.info.name){
+                this.$store.dispatch('getHomeIndex',this.uid);
+            }
+
+        },
+        computed:{
+            info:function () {
+                return this.$store.getters.getHomeIndex;
+            }
         }
     }
 

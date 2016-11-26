@@ -2,5 +2,6 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/components/imgScroll.vue" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/store/mutation.js" charset="UTF-8" />
   </component>
 </project>

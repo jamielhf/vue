@@ -1,6 +1,11 @@
 <template>
   <div class="add-pet">
-      <div class="pet-icon">图片</div>
+      <div class="pet-icon" >
+          <form id="form1"   method="post" enctype="multipart/form-data" >
+             <img :src="imgSrc?imgSrc:'http://dummyimage.com/120x120'" />
+            <input @change="uploadImg" type="file" class="op0" />
+          </form>
+      </div>
       <div class="user-link">
 
           <ul>
@@ -29,34 +34,39 @@
                   </router-link>
               </li>
               <li>
-                  <router-link to="/index"  class="link-box">
+                  <a  class="link-box" @click="petBirthday">
                       <span  class="txt">宠物生日</span>
                       <span class="iconfont icon-xiangyoujiantou icon-right"></span>
-                  </router-link>
+                      <span class="dateNum">{{birthday}}</span>
+                  </a>
               </li>
               <li>
-                  <router-link to="/index"  class="link-box">
+                  <a  class="link-box">
                       <span  class="txt">到家时间</span>
                       <span class="iconfont icon-xiangyoujiantou icon-right"></span>
-                  </router-link>
+                  </a>
               </li>
           </ul>
       </div>
 
       <a @click="submitInfo" class="btn-b">确 定</a>
+
   </div>
 </template>
 
 
 
 <script>
+
     require('../css/addPet.scss');
     export default{
         data:function(){
             return{
                 petName:'',
                 sex:'gg',
-                isChoice:true
+                isChoice:true,
+                imgSrc:'',
+
             }
         },
 
@@ -70,6 +80,14 @@
                 title:'添加宠物'
             })
         },
+        computed:{
+            birthday:function () {
+                return this.$store.getters.getCalendarDate;
+            }
+        },
+        components:{
+
+        },
         methods:{
             submitInfo:function () {
 
@@ -80,6 +98,27 @@
                     this.isChoice = !this.isChoice;
                     this.sex = s;
                 }
+
+            },
+            petBirthday:function () {
+                this.$store.dispatch('calendarStatus',true);
+            },
+            uploadImg:function (e) {
+                let vm = this;
+                let f  = e.target.files[0];
+                if(f){
+
+                    if(window.FileReader) {
+                        var fr = new FileReader();
+                        fr.readAsDataURL(f);
+                        fr.onloadend = function(e) {
+                            vm.imgSrc  = e.target.result
+                        };
+
+                    }
+
+                }
+
 
             }
         }
