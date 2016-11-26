@@ -4,13 +4,9 @@
 >基于vue2.0 + vuex做的，在样式上参考了vux,本来直接想拿过来用的，发现vux的写法好像是比较旧，所以就自己动手写一个,功能会相对简单
 
 
-## demo展示
+## demo展示&&项目中的使用
 
-<img style="width:300px;" src="doc/2.gif"/>
-
-
-项目中的使用
-
+<img style="width:250px;" src="doc/2.gif"/>
 <img style="width:300px;" src="doc/12.png"/>
 
 ##目录结构
