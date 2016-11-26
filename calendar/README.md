@@ -6,11 +6,12 @@
 
 ## demo展示
 
-<img style="width:400px;" src="doc/2.gif"/>
+<img style="width:300px;" src="doc/2.gif"/>
 
 
 项目中的使用
-<img style="width:400px;" src="doc/12.png"/>
+
+<img style="width:300px;" src="doc/12.png"/>
 
 ##目录结构
 
