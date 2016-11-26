@@ -33,6 +33,7 @@ calendar
 
 ##组件使用
 >组件可以传入一个年份的范围，startTime 和 endTime 都是数字, 默认是1900 - 2050
+
 >触发组件 this.$store.dispatch('calendarStatus',true)
 
 
