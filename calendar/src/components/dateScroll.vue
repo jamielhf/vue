@@ -35,7 +35,7 @@
                 max:102,
                 min:'',
                 isR:false,  //是否是闰年
-                dayLength:30,
+                dayLength:30
             }
         },
         props:{
