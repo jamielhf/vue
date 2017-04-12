@@ -8,14 +8,14 @@
             <div class="dp-content">
                 <div class="dp-content">
                     <div class="dp-item" >
-                        <com-date-scroll :select="status" :startTime="startTime" :dType = "'year'" :endTime ="endTime"></com-date-scroll>
+                        <com-date-scroll :cur="dateData.year"  :startTime="dateData.startYear" :dType = "'year'" :endTime ="dateData.endYear"></com-date-scroll>
                   </div>
                     <div class="dp-item" >
-                        <com-date-scroll :select="status"  :dType = "'month'"  ></com-date-scroll>
+                        <com-date-scroll  :cur="dateData.month" :dType = "'month'"  ></com-date-scroll>
 
                     </div>
                     <div class="dp-item" >
-                        <com-date-scroll  :select="status" :dType = "'day'"  ></com-date-scroll>
+                        <com-date-scroll  :cur="dateData.day"  :dType = "'day'"  ></com-date-scroll>
                     </div>
 
                 </div>
@@ -40,13 +40,11 @@
             }
         },
         props:{
-            startTime:{
-                type:Number,
-                default:1900
-            },
-            endTime:{
-                type:Number,
-                default:2050
+            dateData:{
+                type:Object,
+                default: function () {
+                    return { }
+                }
             }
         },
         components:{
@@ -54,15 +52,16 @@
         },
         computed: {
             status:function(){
-                return this.$store.getters.getCalendarOk;
+//                return this.$store.getters.getCalendarOk;
             }
         },
         methods:{
             choiceDate:function(){
-               this.$store.dispatch('calendarOk',true)
+//               this.$store.dispatch('calendarOk',true)
             },
             hiddenCalendar:function () {
-                this.$store.dispatch('calendarStatus',false);
+                this.$emit('hide')
+
             }
         }
     }

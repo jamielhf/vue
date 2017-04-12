@@ -1,4 +1,5 @@
 .DS_Store
 node_modules/
+.idea/
 dist/
 npm-debug.log

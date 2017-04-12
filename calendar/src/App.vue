@@ -1,17 +1,28 @@
 <template>
   <div id="app">
     <p @click  = "setDate">点击设置日期</p>
+    <p @click  = "test">点击设置日期</p>
+    <p>dd</p>
+    <p>dd</p>
+    <p>dd</p>
+    <p>dd</p>
+    <p>dd</p>
+    <p>dd</p>
+    <p>dd</p>
+    <p>dd</p>
+    <p>dd</p>
+    <p>dd</p>
+    <p>dd</p>
     <p>{{date}}</p>
-    <com-calendar :style = "calendar" :startTime = "start" :endTime="end"></com-calendar>
 
-    <div v-show  = "mark" class="mark" @touchmove.stop.prevent ="" @touchstart.stop.prevent =""  @touchend.stop.prevent =""></div>
+
 
   </div>
 </template>
 
 <script>
-  require('./css/style.scss');
-import calendar from './components/calendar';
+
+
 export default {
   name: 'app',
   data () {
@@ -21,27 +32,32 @@ export default {
        end:2030
     }
   },
-  components:{
-    comCalendar:calendar
-  },
+
   methods:{
     setDate:function () {
       //触发日期组件
-      this.$store.dispatch('calendarStatus',true);
+//      this.$store.dispatch('calendarStatus',true);
+    },
+    test(){
+      this.$calendar({
+        year:2015,
+        month:2,
+        day:20,
+      })
     }
   },
     computed:{
       //遮罩状态
       mark:function () {
-        return  this.$store.getters.markStatus
+      //  return  this.$store.getters.markStatus
       },
       //组件状态
       calendar:function () {
-        return this.$store.getters.getCalendarStatus?{ display:'block'}:{ display:'none'};
+   //     return this.$store.getters.getCalendarStatus?{ display:'block'}:{ display:'none'};
       },
       //返回的日期
       date:function () {
-        return this.$store.getters.getCalendarDate;
+      //  return this.$store.getters.getCalendarDate;
       }
 
     }
