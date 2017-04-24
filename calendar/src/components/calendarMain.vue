@@ -1,7 +1,7 @@
 <template>
     <div v-show="status">
         <com-calendar :dateData="dateData" v-on:hide="hide"></com-calendar>
-        <div  class='mark'  ></div>
+        <div  class='mark'></div>
         <p></p>
     </div>
 
@@ -10,7 +10,6 @@
 
 <script>
    import calendarComponent from '../components/calendar.vue'
-   require('../css/calendar');
     export default {
         data:function () {
             return{

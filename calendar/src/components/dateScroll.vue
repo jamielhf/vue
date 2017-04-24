@@ -6,7 +6,7 @@
         <div class="scroller-mask"  ></div>
         <div class="scroller-indicator" ></div>
         <div class="scroller-content" :style="styleObject"  >
-            <div class="scroller-item" v-for = "i in all" :value="i">{{i}}</div>
+            <div class="scroller-item" ref="item" v-for = "i in all" :value="i">{{i}}</div>
         </div>
     </div>
 </template>
@@ -42,7 +42,6 @@
             dType:{
                 type:String
             },
-
             startTime:{
                 type:Number
             },
@@ -89,14 +88,17 @@
 
                 vm.Y = vm.d *34;
 
-                console.log(vm.Y)
+
                 vm.styleObject.transform  = "translate(0,"+vm.Y+"px)";
                 vm.styleObject.transition  = "all "+mT+"s linear";
 
                 vm.isMoving = true;
                 vm.timeOut = setTimeout(function () {
                     vm.isMoving = false
-                },mT)
+                },mT);
+                let v =  this.$refs.item[vm.Y/(-34)+3].innerHTML.match(/\d+/g)[0];
+                this.$emit('setDate',this.dType,v)
+//                console.log(this.$refs.item[vm.Y/(-34)+3].innerHTML)
 
             },
             start:function (e) {

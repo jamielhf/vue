@@ -8,14 +8,14 @@
             <div class="dp-content">
                 <div class="dp-content">
                     <div class="dp-item" >
-                        <com-date-scroll :cur="dateData.year"  :startTime="dateData.startYear" :dType = "'year'" :endTime ="dateData.endYear"></com-date-scroll>
+                        <com-date-scroll @setDate="setDate" :cur="dateData.year"  :startTime="dateData.startYear" :dType = "'year'" :endTime ="dateData.endYear"></com-date-scroll>
                   </div>
                     <div class="dp-item" >
-                        <com-date-scroll  :cur="dateData.month" :dType = "'month'"  ></com-date-scroll>
+                        <com-date-scroll @setDate="setDate"  :cur="dateData.month" :dType = "'month'"  ></com-date-scroll>
 
                     </div>
                     <div class="dp-item" >
-                        <com-date-scroll  :cur="dateData.day"  :dType = "'day'"  ></com-date-scroll>
+                        <com-date-scroll @setDate="setDate"  :cur="dateData.day"  :dType = "'day'"  ></com-date-scroll>
                     </div>
 
                 </div>
@@ -25,11 +25,12 @@
 
 </template>
 
+<style lang="scss">
 
+</style>
 
 <script>
    import dateScroll from './dateScroll.vue';
-   require('../css/calendar');
     export default {
         data:function () {
             return{
@@ -57,10 +58,24 @@
         },
         methods:{
             choiceDate:function(){
-//               this.$store.dispatch('calendarOk',true)
+                let vm = this;
+                this.$emit('hide')
+                this.dateData.onOk({
+                    year:vm.year||vm.dateData.year,
+                    month:vm.month||vm.dateData.month,
+                    day:vm.day||vm.dateData.day,
+                })
             },
             hiddenCalendar:function () {
                 this.$emit('hide')
+                this.dateData.onCancel()
+            },
+            setDate(d,v){
+                switch (d){
+                    case 'year':this.year = v;break;
+                    case 'month':this.month = v;break;
+                    case 'day':this.day = v;break;
+                }
 
             }
         }

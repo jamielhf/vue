@@ -1,6 +1,7 @@
 
 import calendarMain from '../components/calendarMain.vue'
-require('../css/style.scss');
+import m from  '../css/style.scss'
+import s from  '../css/calendar.scss'
 
 let Calendar = {};
 
@@ -28,14 +29,11 @@ Calendar.install = function (Vue, options) {
             opt.status = false
         }
 
-            console.log(opt)
 
         let t = new Date();
 
-
-
         var  calendarComponent = Vue.extend({
-            template: "<calendar-main v-show='status' :dateData='dateData' ></calendar-main>",
+            template: "<calendar-main v-show='status' :dateData='dateData'  ></calendar-main>",
 
             data:function(){
                 return {
@@ -45,6 +43,8 @@ Calendar.install = function (Vue, options) {
                         year:settings.year||t.getFullYear(),
                         month:settings.month||t.getMonth()+1,
                         day:settings.day||t.getDate(),
+                        onOk:settings.onOk||function () {},
+                        onCancel:settings.onCancel||function (){},
                     },
                     status:opt.status
                 }
@@ -62,8 +62,6 @@ Calendar.install = function (Vue, options) {
         }
 
         Vue.prototype.$calendarDate = function() {
-
-
             return
         }
 

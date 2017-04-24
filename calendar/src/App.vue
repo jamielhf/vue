@@ -1,10 +1,7 @@
 <template>
   <div id="app">
-    <p @click  = "setDate">点击设置日期</p>
-    <p @click  = "test">点击设置日期</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
+    <p @click = "setDate" >点击设置日期（默认今天）</p>
+    <p @click = "setDate2" >设定指定的日期（20150220）</p>
     <p>dd</p>
     <p>dd</p>
     <p>dd</p>
@@ -14,7 +11,6 @@
     <p>dd</p>
     <p>dd</p>
     <p>{{date}}</p>
-
 
 
   </div>
@@ -34,17 +30,35 @@ export default {
   },
 
   methods:{
-    setDate:function () {
-      //触发日期组件
-//      this.$store.dispatch('calendarStatus',true);
-    },
-    test(){
+
+   setDate(){
       this.$calendar({
-        year:2015,
-        month:2,
-        day:20,
+          onOk(data){
+              console.log(data)
+              console.log('确定')
+          },
+          onCancel(){
+              console.log('取消')
+          }
+//        year:2015,
+//        month:2,
+//        day:20,
       })
-    }
+    },
+      setDate2(){
+          this.$calendar({
+              onOk(data){
+                  console.log(data)
+                  console.log('确定')
+              },
+              onCancel(){
+                  console.log('取消')
+              },
+            year:2015,
+            month:2,
+            day:20,
+          })
+      }
   },
     computed:{
       //遮罩状态
