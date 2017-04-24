@@ -49,7 +49,7 @@ Vue.use(Calendar,{
 ```
 >使用
 
-
+ 
 ``` javascript
    <template>
      <div id="app">
@@ -119,4 +119,3 @@ npm run dev
 # build for production with minification
 npm run build
 ```
-

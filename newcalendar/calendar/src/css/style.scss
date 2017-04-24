@@ -1,0 +1,20 @@
+@import "base/base";
+
+html,body{
+  -webkit-overflow-scrolling : touch;
+  width: 100%;
+  overflow-x:hidden;
+  min-width: 320px;
+  height:100%;
+  background-color:#f4f4f4;
+}
+
+.mark{
+  background-color: #000;
+  opacity: 0.5;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  position: absolute;
+  z-index: 99;
+}
