@@ -6,10 +6,9 @@
   z-index: 100;
   width: 100vw;
   height: 100vh;
-  display: none;
+  display: block;
   transition: all .5s;
   //transform: translate(0,100%);
-
 
   .scroller-component {
     display: block;

@@ -8,14 +8,14 @@
             <div class="dp-content">
                 <div class="dp-content">
                     <div class="dp-item" >
-                        <com-date-scroll :select="status" :startTime="startTime" :dType = "'year'" :endTime ="endTime"></com-date-scroll>
+                        <com-date-scroll @setDate="setDate" :cur="dateData.year"  :startTime="dateData.startYear" :dType = "'year'" :endTime ="dateData.endYear"></com-date-scroll>
                   </div>
                     <div class="dp-item" >
-                        <com-date-scroll :select="status"  :dType = "'month'"  ></com-date-scroll>
+                        <com-date-scroll @setDate="setDate"  :cur="dateData.month" :dType = "'month'"  ></com-date-scroll>
 
                     </div>
                     <div class="dp-item" >
-                        <com-date-scroll  :select="status" :dType = "'day'"  ></com-date-scroll>
+                        <com-date-scroll @setDate="setDate"  :cur="dateData.day"  :dType = "'day'"  ></com-date-scroll>
                     </div>
 
                 </div>
@@ -25,11 +25,12 @@
 
 </template>
 
+<style lang="scss">
 
+</style>
 
 <script>
    import dateScroll from './dateScroll.vue';
-   require('../css/calendar');
     export default {
         data:function () {
             return{
@@ -40,13 +41,11 @@
             }
         },
         props:{
-            startTime:{
-                type:Number,
-                default:1900
-            },
-            endTime:{
-                type:Number,
-                default:2050
+            dateData:{
+                type:Object,
+                default: function () {
+                    return { }
+                }
             }
         },
         components:{
@@ -54,15 +53,30 @@
         },
         computed: {
             status:function(){
-                return this.$store.getters.getCalendarOk;
+//                return this.$store.getters.getCalendarOk;
             }
         },
         methods:{
             choiceDate:function(){
-               this.$store.dispatch('calendarOk',true)
+                let vm = this;
+                this.$emit('hide')
+                this.dateData.onOk({
+                    year:vm.year||vm.dateData.year,
+                    month:vm.month||vm.dateData.month,
+                    day:vm.day||vm.dateData.day,
+                })
             },
             hiddenCalendar:function () {
-                this.$store.dispatch('calendarStatus',false);
+                this.$emit('hide')
+                this.dateData.onCancel()
+            },
+            setDate(d,v){
+                switch (d){
+                    case 'year':this.year = v;break;
+                    case 'month':this.month = v;break;
+                    case 'day':this.day = v;break;
+                }
+
             }
         }
     }

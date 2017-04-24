@@ -6,7 +6,7 @@
         <div class="scroller-mask"  ></div>
         <div class="scroller-indicator" ></div>
         <div class="scroller-content" :style="styleObject"  >
-            <div class="scroller-item" v-for = "i in all" :value="i">{{i}}</div>
+            <div class="scroller-item" ref="item" v-for = "i in all" :value="i">{{i}}</div>
         </div>
     </div>
 </template>
@@ -42,15 +42,18 @@
             dType:{
                 type:String
             },
-            select:{
-                type:Boolean
-            },
             startTime:{
                 type:Number
+            },
+            cur:{
+              type:Number
             },
             endTime:{
                 type:Number
             }
+        },
+        mounted(){
+          this.moveTo(this.cur)
         },
         methods: {
             end:function (e) {
@@ -92,7 +95,10 @@
                 vm.isMoving = true;
                 vm.timeOut = setTimeout(function () {
                     vm.isMoving = false
-                },mT)
+                },mT);
+                let v =  this.$refs.item[vm.Y/(-34)+3].innerHTML.match(/\d+/g)[0];
+                this.$emit('setDate',this.dType,v)
+//                console.log(this.$refs.item[vm.Y/(-34)+3].innerHTML)
 
             },
             start:function (e) {
@@ -120,9 +126,45 @@
                 if(aY<0&&aY<=vm.min){
                     aY = vm.min
                 }
+
                 vm.styleObject.transition  = "all 0s";
                 vm.styleObject.transform  = "translate(0,"+aY+"px)";
 
+            },
+            moveTo(cur){
+                console.log(cur)
+                let vm = this;
+                if(this.dType=='year'){
+
+                   if(this.all.join().indexOf(cur+'年')==-1){
+                       return false
+                   }
+
+                    cur = cur- this.startTime +1;
+
+                }
+                if(this.dType=='month'){
+                    if(this.all.join().indexOf(cur+'月')==-1){
+                        return false
+                    }
+
+                }
+                if(this.dType=='day'){
+
+                    if(this.all.join().indexOf(cur+'日')==-1){
+                        return false
+                    }
+
+                }
+
+                vm.Y = -((cur-4) *34);
+
+                vm.styleObject.transform  = "translate(0,"+vm.Y+"px)";
+
+                vm.isMoving = true;
+                vm.timeOut = setTimeout(function () {
+                    vm.isMoving = false
+                },0.3)
             }
         },
         computed:{
@@ -150,12 +192,14 @@
                             vm.t.push(s+'日');
                         }
                     }
+
                     if(vm.t[Math.abs(vm.d-3 )]!=undefined){
                         vm.curD = vm.t[Math.abs(vm.d-3 )].match(/\d+/)[0];
                     }else{
                         vm.curD = 1;
                     }
-                   vm.$store.dispatch('calendarDateStatus',{type:vm.dType,d:vm.curD});
+
+//                   vm.$store.dispatch('calendarDateStatus',{type:vm.dType,d:vm.curD});
                     return vm.t
                 },
 
@@ -163,13 +207,13 @@
             },
             year:function () {
                 let vm = this;
-                return this.$store.getters.getYear
+//                return 2001
             },
             month:function () {
-                return this.$store.getters.getMonth
+//                return this.$store.getters.getMonth
             },
             day:function () {
-                return this.$store.getters.getDay
+//                return this.$store.getters.getDay
             }
         },
         watch:{
