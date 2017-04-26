@@ -1,8 +1,8 @@
 import Vue from 'vue'
-//import store from './store/store'
 import App from './App.vue'
 import Calendar from './modules/index';
 
+export default Calendar
 
 
 Vue.use(Calendar);
