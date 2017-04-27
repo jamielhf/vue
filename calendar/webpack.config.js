@@ -3,21 +3,21 @@ var webpack = require('webpack')
 
 module.exports = {
   
-  //  entry: {
-  //   index: './src/index.js',
-  // },
-  // output: {
-  //   path: path.resolve(__dirname, './dist'),
-  //   filename: '[name].js',
-  //   library: 'vue-calendar',
-  //   libraryTarget: 'commonjs2'
-  // },
-  entry: './src/main.js',
+   entry: {
+    index: './src/index.js',
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'build.js'
+    filename: '[name].js',
+    library: 'vue-calendar',
+    libraryTarget: 'commonjs2'
   },
+  // entry: './src/main.js',
+  // output: {
+  //   path: path.resolve(__dirname, './dist'),
+  //   publicPath: '/dist/',
+  //   filename: 'build.js'
+  // },
   module: {
     rules: [
       {

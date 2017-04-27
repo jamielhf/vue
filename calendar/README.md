@@ -5,7 +5,7 @@
 
 >基于vue2.0
 
->修改了之前版本依赖vuex，现在比较插件化 
+>修改了之前版本依赖vuex，现在比较插件化  支持npm
 
 >github地址 https://github.com/jamielhf/vue/tree/master/calendar
 
@@ -34,6 +34,11 @@ calendar
 ```
 
 ##组件使用
+>安装
+```javascript
+npm i vue2-datepick
+```
+
 >初始化
 ```javascript
 import Calendar from './modules/index';
@@ -108,14 +113,3 @@ Vue.use(Calendar,{
 ```
 
 
-##运行
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```

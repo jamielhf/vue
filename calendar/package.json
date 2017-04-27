@@ -1,7 +1,7 @@
 {
   "name": "vue2-datepick",
   "description": "A Vue.js project,vue-calendar,vuejs,vue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "linhf <569309786@qq.com>",
   "private": false,
   "main":"./dist/index.js",
