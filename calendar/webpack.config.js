@@ -2,6 +2,16 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
+  
+  //  entry: {
+  //   index: './src/index.js',
+  // },
+  // output: {
+  //   path: path.resolve(__dirname, './dist'),
+  //   filename: '[name].js',
+  //   library: 'vue-calendar',
+  //   libraryTarget: 'commonjs2'
+  // },
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
