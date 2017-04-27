@@ -36,12 +36,12 @@ calendar
 ##组件使用
 >安装
 ```javascript
-npm i vue2-datepick
+npm i vue2-datepick --save
 ```
 
 >初始化
 ```javascript
-import Calendar from './modules/index';
+import Calendar from 'vue2-datepick';
 Vue.use(Calendar);
 ```
 
