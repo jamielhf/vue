@@ -74,7 +74,7 @@ Vue.use(Calendar);
    
       setDate(){
           let vm = this;
-         this.$calendar({
+         this.$calendar.show({
              onOk(data){
                  console.log(data)
                  vm.data= data.year+'-'+data.month+'-'+data.day;
@@ -82,14 +82,12 @@ Vue.use(Calendar);
              },
              onCancel(){
                  console.log('取消')
-             },
-             startYear:2000,
-              endYear:2010,
+             }
          })
        },
          setDate2(){
              let vm = this;
-             this.$calendar({
+             this.$calendar.show({
                  onOk(data){
                      vm.data= data.year+'-'+data.month+'-'+data.day;
                      console.log('确定')
