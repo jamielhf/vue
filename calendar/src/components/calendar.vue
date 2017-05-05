@@ -8,14 +8,14 @@
             <div class="dp-content">
                 <div class="dp-content">
                     <div class="dp-item" >
-                        <com-date-scroll @setDate="setDate" :cur="dateData.year"  :startTime="dateData.startYear" :dType = "'year'" :endTime ="dateData.endYear"></com-date-scroll>
+                        <com-date-scroll @setDate="setDate" :cur="curYear||year"  :startTime="startYear" :dType = "'year'" :endTime ="endYear"></com-date-scroll>
                   </div>
                     <div class="dp-item" >
-                        <com-date-scroll @setDate="setDate"  :cur="dateData.month" :dType = "'month'"  ></com-date-scroll>
+                        <com-date-scroll @setDate="setDate"  :cur="curMonth||month" :dType = "'month'"  ></com-date-scroll>
 
                     </div>
                     <div class="dp-item" >
-                        <com-date-scroll @setDate="setDate"  :cur="dateData.day"  :dType = "'day'"  ></com-date-scroll>
+                        <com-date-scroll @setDate="setDate"  :cur="curDay||day"  :dType = "'day'"  ></com-date-scroll>
                     </div>
 
                 </div>
@@ -34,47 +34,63 @@
     export default {
         data:function () {
             return{
-                status:false,
-                year:'',
-                month:'',
-                day:''
+                sYear:'',
+                sMonth:'',
+                sDay:'',
+                curYear:'',
+                curMonth:'',
+                curDay:'',
             }
         },
         props:{
-            dateData:{
-                type:Object,
-                default: function () {
-                    return { }
-                }
-            }
+            startYear:{
+                type:Number
+            },
+            endYear:{
+                type:Number
+            },
+            year:{
+                type:Number
+            },
+            month:{
+                type:Number
+            },
+            day:{
+                type:Number
+            },
+            onOk:{
+                type:Function
+            },
+            onCancel:{
+                type:Function
+            },
         },
         components:{
             comDateScroll:dateScroll
         },
-        computed: {
-            status:function(){
-//                return this.$store.getters.getCalendarOk;
-            }
-        },
+
         methods:{
             choiceDate:function(){
                 let vm = this;
-                this.$emit('hide')
-                this.dateData.onOk({
-                    year:vm.year||vm.dateData.year,
-                    month:vm.month||vm.dateData.month,
-                    day:vm.day||vm.dateData.day,
+                this.$emit('hide');
+                this.curYear = this.sYear
+                this.curMonth = this.sMonth
+                this.curDay = this.sDay
+                this.onOk({
+                    year:vm.curYear||vm.year,
+                    month:vm.curMonth||vm.month,
+                    day:vm.curDay||vm.day,
                 })
             },
             hiddenCalendar:function () {
                 this.$emit('hide')
-                this.dateData.onCancel()
+                this.onCancel();
             },
             setDate(d,v){
                 switch (d){
-                    case 'year':this.year = v;break;
-                    case 'month':this.month = v;break;
-                    case 'day':this.day = v;break;
+                    case 'year':this.sYear = v;break;
+                    case 'month':this.sMonth = v;break;
+                    case 'day':this.sDay = v;break;
                 }
 
             }

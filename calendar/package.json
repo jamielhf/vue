@@ -1,15 +1,23 @@
 {
   "name": "vue2-datepick",
+  "keywords": [
+    "vue2-datepick",
+    "vue",
+    "vue2",
+    "vue-calendar",
+    "vue日期选择"
+  ],
   "description": "A Vue.js project,vue-calendar,vuejs,vue",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "author": "linhf <569309786@qq.com>",
   "private": false,
-  "main":"./dist/index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --port 8081",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "object-assign": "^4.1.1",
     "vue": "^2.2.1"
   },
   "devDependencies": {

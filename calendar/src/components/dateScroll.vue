@@ -46,15 +46,13 @@
                 type:Number
             },
             cur:{
-              type:Number
+
             },
             endTime:{
                 type:Number
             }
         },
-        mounted(){
-          this.moveTo(this.cur)
-        },
+
         methods: {
             end:function (e) {
 
@@ -87,7 +85,6 @@
                 }
 
                 vm.Y = vm.d *34;
-
 
                 vm.styleObject.transform  = "translate(0,"+vm.Y+"px)";
                 vm.styleObject.transition  = "all "+mT+"s linear";
@@ -132,26 +129,26 @@
 
             },
             moveTo(cur){
-                console.log(cur)
-                let vm = this;
-                if(this.dType=='year'){
 
-                   if(this.all.join().indexOf(cur+'年')==-1){
+                let vm = this;
+                if(this.dType==='year'){
+
+                   if(this.all.join().indexOf(cur+'年')===-1){
                        return false
                    }
 
                     cur = cur- this.startTime +1;
 
                 }
-                if(this.dType=='month'){
-                    if(this.all.join().indexOf(cur+'月')==-1){
+                if(this.dType==='month'){
+                    if(this.all.join().indexOf(cur+'月')===-1){
                         return false
                     }
 
                 }
-                if(this.dType=='day'){
+                if(this.dType==='day'){
 
-                    if(this.all.join().indexOf(cur+'日')==-1){
+                    if(this.all.join().indexOf(cur+'日')===-1){
                         return false
                     }
 
@@ -263,6 +260,9 @@
                     }
 
                 }
+            },
+            cur:function () {
+                this.moveTo(this.cur)
             }
 
         }

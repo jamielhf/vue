@@ -22,7 +22,7 @@ export default {
 
    setDate(){
        let vm = this;
-      this.$calendar({
+      this.$calendar.show({
           onOk(data){
               console.log(data)
               vm.data= data.year+'-'+data.month+'-'+data.day;
@@ -35,13 +35,14 @@ export default {
     },
       setDate2(){
           let vm = this;
-          this.$calendar({
+          this.$calendar.show({
               onOk(data){
                   vm.data= data.year+'-'+data.month+'-'+data.day;
-                  console.log('确定')
+                  console.log(data)
+                  console.log('确定123')
               },
               onCancel(){
-                  console.log('取消')
+                  console.log('取消123')
               },
             year:2015,
             month:2,
