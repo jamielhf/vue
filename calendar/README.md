@@ -45,13 +45,7 @@ import Calendar from 'vue2-datepick';
 Vue.use(Calendar);
 ```
 
->默认的年份是 1900 - 2050 如果需要可以在初始化的时候传入参数。如
-```javascript
-Vue.use(Calendar,{
-    startYear:2000,
-    endYear:2010,
-});
-```
+
 >使用
 
  
@@ -88,7 +82,9 @@ Vue.use(Calendar,{
              },
              onCancel(){
                  console.log('取消')
-             }
+             },
+             startYear:2000,
+              endYear:2010,
          })
        },
          setDate2(){
@@ -112,6 +108,16 @@ Vue.use(Calendar,{
 
 ```
 
+
+>默认的年份是 1900 - 2050 如果需要可以在调用的时候传入参数
+```javascript
+  this.$calendar.show({
+         startYear:2000,
+        endYear:2010,
+     })
+```
+
+
 ### 版本
-1.0.3 更改初始化的代码
+1.0.4 更改初始化的代码
 
