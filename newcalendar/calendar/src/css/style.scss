@@ -7,9 +7,14 @@ html,body{
   min-width: 320px;
   height:100%;
   background-color:#f4f4f4;
-  position: relative;
-  p{
-    font-size: r(16);
-  }
 }
 
+.mark{
+  background-color: #000;
+  opacity: 0.5;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  position: absolute;
+  z-index: 99;
+}

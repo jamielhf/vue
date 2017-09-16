@@ -3,15 +3,15 @@
   position: absolute;
   top:0;
   left:0;
-
-  z-index: 1000;
-  width: 100%;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  display: block;
   transition: all .5s;
-  transform: translate(0,100%);
+  //transform: translate(0,100%);
 
   .scroller-component {
     display: block;
-    flex: 1;
     position: relative;
     height: 238px;
     overflow: hidden;
@@ -23,9 +23,7 @@
     top: 0;
     width: 100%;
     z-index: -1;
-
   }
-
   .scroller-mask {
     position: absolute;
     left: 0;
@@ -35,37 +33,11 @@
     width: 100%;
     z-index: 3;
     background-image:
-            linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.6)),
-            linear-gradient(to top, rgba(255,255,255,0.95), rgba(255,255,255,0.6));
+    linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.6)),
+    linear-gradient(to top, rgba(255,255,255,0.95), rgba(255,255,255,0.6));
     background-position: top, bottom;
     background-size: 100% 102px;
     background-repeat: no-repeat;
-  }
-  .cal-header{
-    position: relative;
-    width: 100%;
-    left: 0;
-    height: 45px;
-    bottom: 0;
-    border-bottom: 1px solid #ddd;
-    background-color: #fff;
-    display: flex;
-    justify-content: space-between;
-    &>div{
-      height: 45px;
-      line-height: 45px;
-      color: #666;
-      width: 60px;
-      text-align: center;
-      font-size: 16px;
-    }
-    .dp-right{
-      color:#337ab7
-    }
-  }
-  .cal-content{
-    position: relative;
-    display: flex;
   }
   .scroller-item {
     text-align: center;
@@ -80,7 +52,7 @@
     position: absolute;
     left: 0;
     top: 102px;
-    z-index: 2;
+    z-index: 3;
     background-image:
             linear-gradient(to bottom, #d0d0d0, #d0d0d0, transparent, transparent),
             linear-gradient(to top, #d0d0d0, #d0d0d0, transparent, transparent);
@@ -139,22 +111,4 @@
     flex: 1;
     text-align: center;
   }
-}
-
-
-.g-calender-content{
-  position: absolute;
-  bottom:0;
-  z-index: 1000;
-}
-
-
-.com-mark{
-  background-color: #000;
-  opacity: 0.5;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  position: absolute;
-  z-index: 999;
 }

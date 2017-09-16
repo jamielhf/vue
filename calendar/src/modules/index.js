@@ -1,8 +1,8 @@
 
 import CalendarMain from '../components/calendarMain.vue'
 import { mergeOptions } from './util'
-import m from  '../css/style.scss'
-import s from  '../css/calendar.scss'
+import   '../css/style.scss'
+import '../css/calendar.scss'
 
 
 
@@ -26,15 +26,21 @@ Calendar.install = function (Vue) {
         instance.show = true;
 
         mergeOptions(instance, settings)
-        console.log(instance)
 
+        console.log(instance)
 
     }
     Vue.prototype.$calendar.hide  = ()=>{
         instance.show = false
     }
 
-
+    Vue.prototype.$calendar.getDate  = ()=>{
+        return {
+            year:instance.year||(new Date).getFullYear(),
+            month:instance.month||((new Date).getMonth()+1),
+            day:instance.day||(new Date).getDay()
+        }
+    }
 
 
 
