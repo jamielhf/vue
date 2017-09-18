@@ -43,11 +43,6 @@ Calendar.install = function (Vue) {
     }
 
 
-
-
-
-
-
 }
 export  default Calendar
 

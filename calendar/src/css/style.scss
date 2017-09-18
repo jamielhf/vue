@@ -5,11 +5,12 @@ html,body{
   width: 100%;
   overflow-x:hidden;
   min-width: 320px;
-  height:100%;
+  //height:100%;
   background-color:#f4f4f4;
   position: relative;
   p{
-    font-size: r(16);
+    font-size: r(24);
+    line-height: 150%;
   }
 }
 

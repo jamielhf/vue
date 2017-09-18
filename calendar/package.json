@@ -8,12 +8,12 @@
     "vue日期选择"
   ],
   "description": "A Vue.js project,vue-calendar,vuejs,vue",
-  "version": "1.0.6",
+  "version": "1.2.0",
   "author": "linhf <569309786@qq.com>",
   "private": false,
   "main": "./dist/index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --port 8081",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --port 8889 --host 192.168.1.142",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
