@@ -115,10 +115,6 @@
 
                 };
 
-
-
-
-
                 //跳转对位
                 if(Math.abs(this.eY%34)<=17){
                     this.eY =  parseInt(this.eY/34)*34;

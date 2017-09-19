@@ -6,7 +6,7 @@
                 <div class="com-calendar"   >
                     <div class="cal-header">
                         <div class=" dp-left "  @click="close">取消</div>
-                        <div class=" dp-right " >确定</div>
+                        <div class=" dp-right " @click="chose">确定</div>
                     </div>
                     <div class="cal-content"  >
                         <picker  @changeCurVal=changeCurVal :dataList = year type="year"></picker>
@@ -34,7 +34,12 @@ import picker from './picker.vue'
                 curYear:1951,
                 curMonth:1,
                 curDay:1,
-
+                onOk:(e) =>{
+                    console.log(this.curYear+'-'+this.curMonth+'-'+this.curDay)
+                },
+                onCancel:function () {
+                    console.log('close')
+                }
             }
         },
         created(){
@@ -65,6 +70,12 @@ import picker from './picker.vue'
             },
             close(){
                this.$calendar.hide()
+                this.onCancel()
+            },
+            chose(){
+                this.$calendar.hide();
+                let d = this.curYear+'-'+this.curMonth+'-'+this.curDay
+                this.onOk(d)
             },
             changeDataList(){
                 let c2 = this.curMonth ==2;

@@ -1,6 +1,6 @@
 <template>
-  <div id="app" @touchmove="start">
-    <p @click = "setDate" >点击设置日期（默认今天）</p>
+  <div id="app" >
+    <p @click = "setDate" >点击设置日期（默认今天）{{data}}</p>
     <p>点击设置日期</p>
     <p>点击设置日期</p>
     <p>点击设置日期</p>
@@ -60,12 +60,15 @@ export default {
   },
 
   methods:{
-    start(e){
-//        e.preventDefault()
-    },
+
    setDate(){
        let vm = this;
-        this.$calendar.show()
+       this.$calendar.show({
+           onOk:function (date) {
+               console.log(date)
+           }
+       });
+
     }
 
   },
