@@ -13,7 +13,7 @@
   "private": false,
   "main": "./dist/index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --port 8889 --host 192.168.1.142",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --port 8889 --host 127.0.0.1",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {

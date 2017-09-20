@@ -38,7 +38,7 @@
     <p>点击设置日期d</p>
     <!--<p @click = "setDate2" >设定指定的日期（20150220）</p>-->
 
-  <p>{{data}}</p>
+
 
 
 
@@ -64,8 +64,9 @@ export default {
    setDate(){
        let vm = this;
        this.$calendar.show({
-           onOk:function (date) {
-               console.log(date)
+           onOk: (date) =>{
+               console.log(1111)
+              this.data = date
            }
        });
 

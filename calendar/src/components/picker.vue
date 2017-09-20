@@ -38,15 +38,23 @@
                type:Array,
                default:[]
            },
+            defaultVal:[String, Number],
             type:{
                 type:String,
                 default:''
             }
         },
         mounted(){
-            this.style =  {
-                transform:'translate3d(0px, '+this.sY+'px, 0px)',
+
+            if(this.defaultVal){
+                this.moveTo()
+            }else{
+                this.style =  {
+                    transform:'translate3d(0px, '+this.sY+'px, 0px)',
+                }
             }
+
+
         },
         computed:{
           dateList(){
@@ -72,8 +80,25 @@
             start(e){
                 this.sY = e.touches[0].clientY;
                 this.touchStartTime = e.timeStamp;
+            },
+            //初始化有值的时候滚动到某个地方
+            moveTo(){
 
-//                console.log(this.sY)
+                this.dateList.map((i,k)=>{
+
+                    if(i.val==this.defaultVal){
+                        this.activeItem = k;
+                        this.activeItemValue = i.val;
+                    }
+                });
+
+                this.Y =102- (this.activeItem*34);
+                this.eY = 102- (this.activeItem*34);
+
+                this.style =  {
+                    transform:'translate3d(0px, '+this.Y+'px, 0px)',
+                    transition:'all ease '+this.t+'s'
+                }
             },
 
             move(e){
@@ -85,8 +110,6 @@
                     transform:'translate3d(0px, '+this.Y+'px, 0px)',
                     transition:'all ease '+this.t+'s'
                 }
-
-
             },
             end(e){
 

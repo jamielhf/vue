@@ -9,9 +9,9 @@
                         <div class=" dp-right " @click="chose">确定</div>
                     </div>
                     <div class="cal-content"  >
-                        <picker  @changeCurVal=changeCurVal :dataList = year type="year"></picker>
-                        <picker @changeCurVal=changeCurVal :dataList = month type="month"></picker>
-                        <picker @changeCurVal=changeCurVal :dataList = day type="day"></picker>
+                        <picker :defaultVal=curYear  @changeCurVal=changeCurVal :dataList = year type="year"></picker>
+                        <picker :defaultVal=curMonth @changeCurVal=changeCurVal :dataList = month type="month"></picker>
+                        <picker :defaultVal=curDay @changeCurVal=changeCurVal :dataList = day type="day"></picker>
                     </div>
 
                 </div>
@@ -33,11 +33,12 @@ import picker from './picker.vue'
                 day:[1,31],
                 curYear:1951,
                 curMonth:1,
+                date:'',
                 curDay:1,
                 onOk:(e) =>{
                     console.log(this.curYear+'-'+this.curMonth+'-'+this.curDay)
                 },
-                onCancel:function () {
+                onCancel: () =>{
                     console.log('close')
                 }
             }
@@ -74,7 +75,8 @@ import picker from './picker.vue'
             },
             chose(){
                 this.$calendar.hide();
-                let d = this.curYear+'-'+this.curMonth+'-'+this.curDay
+                let d = this.curYear+'-'+this.curMonth+'-'+this.curDay;
+                this.date = this.curYear+'-'+this.curMonth+'-'+this.curDay;
                 this.onOk(d)
             },
             changeDataList(){

@@ -26,23 +26,22 @@ Calendar.install = function (Vue) {
         instance.show = true;
         let d = ''
 
-
-                if(settings.date){
+                //传入日期，或者已经有选中的日期，就会是初始值
+            let date = settings.date||instance.date;
+                if(date){
                     try{
-                         d = settings.date.split('-')
+                         d = date.split('-')
                     }catch (e){
                         console.log(e);
                         let time = new Date()
-                        d = [time.getFullYear(),time.getMonth()+1,time.getDay()]
+                        d = [time.getFullYear(),time.getMonth()+1,time.getDate()]
                     }
-                    [settings.curYear,settings.curMonth,settings.curDay] = d
+                }else{
+                    let time = new Date()
+                    d = [time.getFullYear(),time.getMonth()+1,time.getDate()]
                 }
 
-
-
-
-
-
+        [settings.curYear,settings.curMonth,settings.curDay] = d
         mergeOptions(instance, settings)
 
         console.log(instance)
