@@ -5,7 +5,7 @@
 
 >基于vue2.0
 
->修改了之前版本依赖vuex，现在比较插件化  支持npm
+>修改了之前版本依赖vuex，插件化  支持npm
 
 >github地址 https://github.com/jamielhf/vue/tree/master/calendar
 
@@ -26,8 +26,9 @@ calendar
 　|--src
 　　　|--assets 资源
 　　　|--components
-　　　　　|--calendar    日期组件
-　　　　　|--dateScroll  滚动的子组件
+　　　　　|--calendarMain    日期组件
+　　　　　|--picker  滚动的子组件
+     |--modules 插件的js
 　　　|--css
 　　　|App.vue   入口
 　　　|main.js   
@@ -49,73 +50,70 @@ Vue.use(Calendar);
 >使用
 
  
-``` javascript
+``` 
    <template>
-     <div id="app">
+     <div id="app" >
        <p @click = "setDate" >点击设置日期（默认今天）</p>
-       <p @click = "setDate2" >设定指定的日期（20150220）</p>
+       <p>选中的时间{{data}}</p>
+       <p @click = "setDate2" >设定指定的日期（2015-2-20）</p>
+       <p>选中的时间{{data2}}</p>
    
-     <p>{{data}}</p>
+   
+   
      </div>
    </template>
    
-   <script>
    
+   
+   <script>
+   import './css/style.scss'
    
    export default {
      name: 'app',
      data () {
        return {
-           data:'日期'
+           data:'',
+           data2:''
        }
      },
    
      methods:{
    
       setDate(){
-          let vm = this;
-         this.$calendar.show({
-             onOk(data){
-                 console.log(data)
-                 vm.data= data.year+'-'+data.month+'-'+data.day;
-                 console.log('确定')
-             },
-             onCancel(){
-                 console.log('取消')
-             }
-         })
+   
+          this.$calendar.show({
+              onOk: (date) =>{
+                 this.data = date
+              }
+          });
+   
        },
-         setDate2(){
-             let vm = this;
-             this.$calendar.show({
-                 onOk(data){
-                     vm.data= data.year+'-'+data.month+'-'+data.day;
-                     console.log('确定')
-                 },
-                 onCancel(){
-                     console.log('取消')
-                 },
-               year:2015,
-               month:2,
-               day:20,
-             })
-         }
+       setDate2(){
+   
+           this.$calendar.show({
+               year:[1925,2015],  //年份的范围,如果初始化的年份不在这个范围，会自动选最小的年份
+               date:'2015-2-20',  //初始化的日期
+               onOk: (date) =>{
+                   this.data2 = date
+               },
+               onCancel:()=>{
+                   console.log('关闭')
+               }
+           });
+   
+       },
+   
      },
    }
    </script>
 
+
 ```
 
 
->默认的年份是 1900 - 2050 如果需要可以在调用的时候传入参数
-```javascript
-  this.$calendar.show({
-         startYear:2000,
-        endYear:2010,
-     })
-```
 
 
 ### 版本
+2.0.0 修复之前的日期没有联动的bug，重构了一次  
 1.0.4 更改初始化的代码
 

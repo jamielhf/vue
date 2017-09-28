@@ -43,10 +43,11 @@ import picker from './picker.vue'
                 }
             }
         },
-        created(){
+        mounted(){
 
 
         },
+
         computed:{
           isR(){
               let isR = this.curYear%4==0?true:false;
@@ -55,12 +56,11 @@ import picker from './picker.vue'
           }
         },
         watch:{
-            show(){
-                console.log(this.show)
+            //初始化的值要判断下日期的范围
+            date(){
+                this.changeCurVal('year',this.curYear)
+                this.changeCurVal('month',this.curMonth)
             },
-            curYear(){
-                console.log(this.curYear)
-            }
         },
         components:{
             picker

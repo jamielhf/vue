@@ -41,7 +41,17 @@ Calendar.install = function (Vue) {
                     d = [time.getFullYear(),time.getMonth()+1,time.getDate()]
                 }
 
-        [settings.curYear,settings.curMonth,settings.curDay] = d
+
+            if(settings.year){
+                    console.log(d)
+                if(d[0]<settings.year[0]||d[1]>settings.year[1]){
+                    d[0] = settings.year[0]
+                }
+            }
+
+
+
+        [settings.curYear,settings.curMonth,settings.curDay] = d;
         mergeOptions(instance, settings)
 
         console.log(instance)

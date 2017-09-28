@@ -56,6 +56,14 @@
 
 
         },
+        watch:{
+            dataList(){
+                if(this.type=='day'){
+
+
+                }
+            }
+        },
         computed:{
           dateList(){
               let a = [];
@@ -71,6 +79,26 @@
                   a.push({txt:i+txt,val:i})
               }
               this.itemLength = a.length
+
+
+              if(this.type=='day'){
+                  let end  = (this.itemLength-1)*-34+102;
+                  if(this.eY<=end){
+                      this.Y= end;
+                      this.eY = end;
+                      this.activeItem = this.itemLength-1;
+                  }
+
+                  this.style =  {
+                      transform:'translate3d(0px, '+this.eY+'px, 0px)',
+                      transition:'all ease '+this.t+'s'
+                  }
+
+                    this.curVal = a[this.activeItem]['val']
+
+                    this.$emit('changeCurVal',this.type,this.curVal)
+              }
+
 
               return a
 
@@ -180,11 +208,7 @@
 
             }
         },
-        watch:{
 
-
-
-        }
     }
 
 
