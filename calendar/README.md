@@ -16,7 +16,7 @@
 <img width = "384" src="doc/2.gif"/>
 <img width = "300" src="doc/12.png"/>
 
-##目录结构
+## 目录结构
 
 demo 用vue-cli 的webpack-simple构建的
 ```
@@ -34,7 +34,7 @@ calendar
 　　　|main.js   
 ```
 
-##组件使用
+## 组件使用
 >安装
 ```javascript
 npm i vue2-datepick --save
