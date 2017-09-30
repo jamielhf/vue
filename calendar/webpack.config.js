@@ -60,16 +60,18 @@ module.exports = {
   devtool: '#eval-source-map'
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production'||process.env.NODE_ENV === 'publish') {
 
-    module.exports.entry =   {
-        index: './src/index.js',
-      },
-    module.exports.output = {
-        path: path.resolve(__dirname, './dist'),
-        filename: '[name].js',
-        library: 'vue-calendar',
-        libraryTarget: 'commonjs2'
+    if(process.env.NODE_ENV === 'publish'){
+    	module.exports.entry =   {
+        	index: './src/index.js',
+      	},
+   			 module.exports.output = {
+	        path: path.resolve(__dirname, './dist'),
+	        filename: '[name].js',
+	        library: 'vue-calendar',
+	        libraryTarget: 'commonjs2'
+    	}
     }
 
 

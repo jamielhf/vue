@@ -1,7 +1,6 @@
 
 import CalendarMain from '../components/calendarMain.vue'
 import { mergeOptions } from './util'
-import   '../css/style.scss'
 import '../css/calendar.scss'
 
 
