@@ -13,6 +13,8 @@
 
 ## demo展示&&项目中的使用
 
+在线demo地址：https://jamielhf.github.io/vue/calendar/  
+
 <img width = "384" src="doc/2.gif"/>
 <img width = "300" src="doc/12.png"/>
 
