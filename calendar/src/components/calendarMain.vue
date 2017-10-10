@@ -2,7 +2,7 @@
     <transition name="fade">
 
             <div class="com-calendar-box" v-if="show">
-                <div class="com-mark"  @touchmove.prevent="stop"   v-if="show"></div>
+                <div class="com-mark"  @touchmove.prevent="stop" @click="close"  v-if="show"></div>
                 <div class="com-calendar"   >
                     <div class="cal-header">
                         <div class=" dp-left "  @click="close">取消</div>
