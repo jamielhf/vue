@@ -38,7 +38,7 @@ export default {
     setDate2(){
 
         this.$calendar.show({
-            year:[1925,2015],  //年份的范围,如果初始化的年份不在这个范围，会自动选最小的年份
+            year:[1925,2020],  //年份的范围,如果初始化的年份不在这个范围，会自动选最小的年份
             date:'2015-2-20',  //初始化的日期
             onOk: (date) =>{
                 this.data2 = date
