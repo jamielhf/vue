@@ -9,9 +9,9 @@
                         <div class=" dp-right " @click="chose">确定</div>
                     </div>
                     <div class="cal-content"  >
-                        <picker :defaultVal=curYear  @changeCurVal=changeCurVal :dataList = year type="year"></picker>
-                        <picker :defaultVal=curMonth @changeCurVal=changeCurVal :dataList = month type="month"></picker>
-                        <picker :defaultVal=curDay @changeCurVal=changeCurVal :dataList = day type="day"></picker>
+                        <picker :defaultVal.sync=curYear  @changeCurVal=changeCurVal :dataList = year type="year"></picker>
+                        <picker :defaultVal.sync=curMonth @changeCurVal=changeCurVal :dataList = month type="month"></picker>
+                        <picker :defaultVal.sync=curDay @changeCurVal=changeCurVal :dataList = day type="day"></picker>
                     </div>
 
                 </div>
@@ -33,6 +33,7 @@ import picker from './picker.vue'
                 day:[1,31],
                 curYear:1951,
                 curMonth:1,
+                endTime:'',
                 date:'',
                 curDay:1,
                 onOk:(e) =>{
@@ -40,12 +41,18 @@ import picker from './picker.vue'
                 },
                 onCancel: () =>{
                     console.log('close')
+
                 }
             }
         },
-        mounted(){
-
-
+        created(){
+            if(this.endTime){
+                let d = this.endTime.split('-');
+                //在限制的时间范围内
+                if(d[0]<=this.year[1]&&d[0]>=this.year[0]){
+                    this.year = [this.year[0],d[0]];
+                }
+            }
         },
 
         computed:{
@@ -56,6 +63,10 @@ import picker from './picker.vue'
           }
         },
         watch:{
+            //月份变化的时候 检查下是否有endtime的限制
+            curMonth(){
+                this.checkEndTime()
+            },
             //初始化的值要判断下日期的范围
             date(){
                 this.changeCurVal('year',this.curYear)
@@ -70,16 +81,37 @@ import picker from './picker.vue'
                 e.preventDefault();
             },
             close(){
-               this.$calendar.hide()
-                this.onCancel()
+                this.$calendar.hide();
+                this.onCancel();
             },
             chose(){
                 this.$calendar.hide();
                 let d = this.curYear+'-'+this.curMonth+'-'+this.curDay;
                 this.date = this.curYear+'-'+this.curMonth+'-'+this.curDay;
-                this.onOk(d)
+                this.onOk(d);
+            },
+            checkEndTime(){
+                if(this.endTime){
+                    let d = this.endTime.split('-');
+                    //在限制的时间范围内
+                    if(d[0]<=this.year[1]&&d[0]>=this.year[0]){
+                        this.year = [this.year[0],d[0]];
+                        if(this.curYear==this.year[1]){
+                            this.month = [1,d[1]]
+                            if(this.curMonth==d[1]){
+                                this.day = [1,d[2]]
+                            }
+                        }else{
+                            this.month = [1,12]
+                        }
+                    }else {
+                        this.endTime = ''
+                    }
+
+                }
             },
             changeDataList(){
+
                 let c2 = this.curMonth ==2;
 
                 let c1 = [1,3,5,7,8,10,12].join().indexOf(this.curMonth);
@@ -95,6 +127,9 @@ import picker from './picker.vue'
                 }else{
                     this.day = [1,31];
                 }
+
+
+                this.checkEndTime()
 
             },
             changeCurVal(type,val){

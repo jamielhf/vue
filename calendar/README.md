@@ -53,69 +53,70 @@ Vue.use(Calendar);
 
  
 ``` 
-   <template>
-     <div id="app" >
-       <p @click = "setDate" >点击设置日期（默认今天）</p>
-       <p>选中的时间{{data}}</p>
-       <p @click = "setDate2" >设定指定的日期（2015-2-20）</p>
-       <p>选中的时间{{data2}}</p>
-   
-   
-   
-     </div>
-   </template>
-   
-   
-   
-   <script>
-   import './css/style.scss'
-   
-   export default {
-     name: 'app',
-     data () {
-       return {
-           data:'',
-           data2:''
-       }
-     },
-   
-     methods:{
-   
-      setDate(){
-   
+  <template>
+    <div id="app" >
+      <p @click = "setDate" >点击设置日期（默认今天）</p>
+      <p>选中的时间{{data}}</p>
+      <p @click = "setDate2" >设定指定的日期（2015-2-20）</p>
+      <p>选中的时间{{data2}}</p>
+  
+  
+  
+    </div>
+  </template>
+  
+  
+  
+  <script>
+  import './css/style.scss'
+  
+  export default {
+    name: 'app',
+    data () {
+      return {
+          data:'',
+          data2:''
+      }
+    },
+  
+    methods:{
+  
+     setDate(){
+  
+         this.$calendar.show({
+             onOk: (date) =>{
+                this.data = date
+             }
+         });
+  
+      },
+      setDate2(){
+  
           this.$calendar.show({
+              year:[1925,2050],  //年份的范围,如果初始化的年份不在这个范围，会自动选最小的年份
+              endTime:'2020-2-12',  //终止的日期，这个要在year的范围里面，不然没用
+              date:'2015-2-20',  //初始化的日期
               onOk: (date) =>{
-                 this.data = date
+                  this.data2 = date
+              },
+              onCancel:()=>{
+                  console.log('关闭')
               }
           });
-   
-       },
-       setDate2(){
-   
-           this.$calendar.show({
-               year:[1925,2015],  //年份的范围,如果初始化的年份不在这个范围，会自动选最小的年份
-               date:'2015-2-20',  //初始化的日期
-               onOk: (date) =>{
-                   this.data2 = date
-               },
-               onCancel:()=>{
-                   console.log('关闭')
-               }
-           });
-   
-       },
-   
-     },
-   }
-   </script>
+  
+      },
+  
+    },
+  }
+  </script>
+
 
 
 ```
 
 
-
-
 ### 版本
+2.1.0 添加了endTime终止的时间，更新了vue的版本  
 2.0.4 点击背景可以关闭  
 2.0.0 修复之前的日期没有联动的bug，重构了一次  
 1.0.4 更改初始化的代码

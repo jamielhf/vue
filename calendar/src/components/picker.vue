@@ -44,6 +44,7 @@
                 default:''
             }
         },
+
         mounted(){
 
             if(this.defaultVal){
@@ -58,10 +59,17 @@
         },
         watch:{
             dataList(){
-                if(this.type=='day'){
 
-
+                if(this.type=='month'||this.type=='day'){
+                    console.log(this.dataList[1])
+                    if(this.itemLength>this.dataList[1]){
+                        console.log(this.dataList[1])
+                        this.$emit('update:defaultVal', this.dataList[1])
+                        // 调用this.$emit('update')后，this.defaultVal并没有马上改变，但是父级的值已经改了
+                        this.moveTo(this.dataList[1])
+                    }
                 }
+
             }
         },
         computed:{
@@ -78,8 +86,7 @@
               for(let i =this.dataList[0];i<=this.dataList[1];i++){
                   a.push({txt:i+txt,val:i})
               }
-              this.itemLength = a.length
-
+              this.itemLength = a.length;
 
               if(this.type=='day'){
                   let end  = (this.itemLength-1)*-34+102;
@@ -110,11 +117,11 @@
                 this.touchStartTime = e.timeStamp;
             },
             //初始化有值的时候滚动到某个地方
-            moveTo(){
+            moveTo(defaultVal){
 
                 this.dateList.map((i,k)=>{
 
-                    if(i.val==this.defaultVal){
+                    if(i.val==(defaultVal||this.defaultVal)){
                         this.activeItem = k;
                         this.activeItemValue = i.val;
                     }
@@ -128,7 +135,6 @@
                     transition:'all ease '+this.t+'s'
                 }
             },
-
             move(e){
 
                 this.Y =this.eY+ e.touches[0].clientY  - this.sY;
@@ -148,7 +154,6 @@
                 this.touchEndTime = e.timeStamp  - this.touchStartTime;
 
                 this.t = 0.1;
-
 
                 //没有移动
                 if(this.sY ==e.changedTouches[0].clientY){
@@ -180,7 +185,6 @@
                 }
 
                 this.activeItem = Math.abs((this.eY-102)/34);
-
 
                 //超出范围，滚回去
                 if(this.eY>start){
