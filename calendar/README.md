@@ -14,7 +14,7 @@
 
 ## demo展示&&项目中的使用
 
-在线demo地址：https://jamielhf.github.io/vue/calendar/
+在线demo地址：https://jamielhf.github.io/vue/calendar/dist/
 
 
 ## 目录结构
