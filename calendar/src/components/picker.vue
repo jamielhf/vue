@@ -1,219 +1,131 @@
 <template>
+  <div class="m-picker" v-if="show">
 
-            <div class="scroller-component"  >
-                <div class="scroller-mask" @touchstart.prevent="start"  @touchmove.prevent="move"   @touchend.prevent="end"></div>
-                <div class="scroller-indicator" ></div>
-                <div class="scroller-content" :style="style" >
-                    <div class="scroller-item "  v-for = "i in dateList">{{i.txt}}</div>
-                </div>
+    <div class="m-picker-mark"></div>
+    <div class="m-picker-box">
+      <div class="m-picker-header">
+        <span @click="cancel">取消</span>
+        <span @click="sel">确定</span>
+      </div>
+      <div class="m-picker-content">
+        <div class="m-picker-item-box" v-if="type=='datePicker'">
+          <PickerItem :val.sync="year" :selType="'year'" :change="change" :d="dataList[0]"></PickerItem>
+          <PickerItem :val.sync="month" :selType="'month'" :change="change" :d="dataList[1]"></PickerItem>
+          <PickerItem :val.sync="day" :selType="'day'" :change="change"  :d="dataList[2]"></PickerItem>
+        </div>
+        <div class="m-picker-item-box" v-else>
+            <PickerItem v-for="(i,k) in dataList" :key="k"  :change="change" :d="i"></PickerItem>
+      </div>
+      </div>
+    </div>
 
-            </div>
-
-
+  </div>
 </template>
 
-
 <script>
-    export default{
-        data(){
-            return{
-                activeItem:0,
-                itemLength:0,
-                activeItemValue:0,
-                curVal:'',//选中的值
-                style:{}, //样式对象
-                Y:0, //
-                t:0.1, //时间
-                touchStartTime:0,
-                touchEndTime:0,
-                eY:34*3, //
-                sY:34*3,  //开始的位置
-                isMoving:false,  //是否正在滚动
-                itemHeight:34,  //每个item的高度
-                isR:false  //是否是闰年
-            }
-        },
-        props:{
-            dataList:{
-               type:Array,
-               default:[]
-           },
-            defaultVal:[String, Number],
-            type:{
-                type:String,
-                default:''
-            }
-        },
+ import '../css/calendar.scss'
+ import PickerItem from './PickerItem.vue'
+export default {
+  name: 'HelloWorld',
+  data () {
+    return {
+      show:false,
+      type:'picker',
+      dataList:[],
+      year:1,
+      month:1,
+      day:1,
+      endTime:'',
+      onOk(e){
+        console.log(e)
+      },
+      onCancel(){
 
-        mounted(){
-
-            if(this.defaultVal){
-                this.moveTo()
-            }else{
-                this.style =  {
-                    transform:'translate3d(0px, '+this.sY+'px, 0px)',
-                }
-            }
-
-
-        },
-        watch:{
-            dataList(){
-
-                if(this.type=='month'||this.type=='day'){
-                    console.log(this.dataList[1])
-                    if(this.itemLength>this.dataList[1]){
-                        console.log(this.dataList[1])
-                        this.$emit('update:defaultVal', this.dataList[1])
-                        // 调用this.$emit('update')后，this.defaultVal并没有马上改变，但是父级的值已经改了
-                        this.moveTo(this.dataList[1])
-                    }
-                }
-
-            }
-        },
-        computed:{
-          dateList(){
-              let a = [];
-              let txt = '';
-              switch (this.type){
-                  case 'year':txt = '年';break;
-                  case 'month':txt = '月';break;
-                  case 'day':txt = '日';break;
-                  default:txt = '年';
-              }
-
-              for(let i =this.dataList[0];i<=this.dataList[1];i++){
-                  a.push({txt:i+txt,val:i})
-              }
-              this.itemLength = a.length;
-
-              if(this.type=='day'){
-                  let end  = (this.itemLength-1)*-34+102;
-                  if(this.eY<=end){
-                      this.Y= end;
-                      this.eY = end;
-                      this.activeItem = this.itemLength-1;
-                  }
-
-                  this.style =  {
-                      transform:'translate3d(0px, '+this.eY+'px, 0px)',
-                      transition:'all ease '+this.t+'s'
-                  }
-
-                    this.curVal = a[this.activeItem]['val']
-
-                    this.$emit('changeCurVal',this.type,this.curVal)
-              }
-
-
-              return a
-
-          }
-        },
-        methods:{
-            start(e){
-                this.sY = e.touches[0].clientY;
-                this.touchStartTime = e.timeStamp;
-            },
-            //初始化有值的时候滚动到某个地方
-            moveTo(defaultVal){
-
-                this.dateList.map((i,k)=>{
-
-                    if(i.val==(defaultVal||this.defaultVal)){
-                        this.activeItem = k;
-                        this.activeItemValue = i.val;
-                    }
-                });
-
-                this.Y =102- (this.activeItem*34);
-                this.eY = 102- (this.activeItem*34);
-
-                this.style =  {
-                    transform:'translate3d(0px, '+this.Y+'px, 0px)',
-                    transition:'all ease '+this.t+'s'
-                }
-            },
-            move(e){
-
-                this.Y =this.eY+ e.touches[0].clientY  - this.sY;
-//
-                this.t = 0.1;
-                this.style =  {
-                    transform:'translate3d(0px, '+this.Y+'px, 0px)',
-                    transition:'all ease '+this.t+'s'
-                }
-            },
-            end(e){
-
-                let m = this.Y;
-                let start  = 102;
-                let end  = (this.itemLength-1)*-34+102;
-                this.eY = this.Y;
-                this.touchEndTime = e.timeStamp  - this.touchStartTime;
-
-                this.t = 0.1;
-
-                //没有移动
-                if(this.sY ==e.changedTouches[0].clientY){
-                    return
-                }
-
-                /*
-                 * 在短时间移动比较大的距离的时候会滑动距离变大
-                 * */
-
-                if((this.touchEndTime<220)&&Math.abs(e.changedTouches[0].clientY-this.sY)>100){
-
-                    this.eY  = this.eY+(e.changedTouches[0].clientY-this.sY)*this.touchEndTime/100
-                    this.t = 25/this.touchEndTime*2;
-
-                };
-
-                //跳转对位
-                if(Math.abs(this.eY%34)<=17){
-                    this.eY =  parseInt(this.eY/34)*34;
-
-                }else{
-                    if(this.eY>0){
-                        this.eY =  parseInt(this.eY/34)*34+34
-                    }else{
-                        this.eY =  parseInt(this.eY/34)*34-34
-                    }
-
-                }
-
-                this.activeItem = Math.abs((this.eY-102)/34);
-
-                //超出范围，滚回去
-                if(this.eY>start){
-                    this.Y= 102;
-                    this.eY = 102;
-                    this.activeItem = 0;
-                }
-                if(this.eY<=end){
-                    this.Y= end;
-                    this.eY = end;
-                    this.activeItem = this.itemLength-1;
-                }
-
-                this.style =  {
-                    transform:'translate3d(0px, '+this.eY+'px, 0px)',
-                    transition:'all ease '+this.t+'s'
-                }
-
-
-                this.curVal = this.dateList[this.activeItem]['val']
-
-
-                this.$emit('changeCurVal',this.type,this.curVal)
-
-
-            }
-        },
-
+      }
     }
+  },
+  computed:{
+    isR(){
+      return this.year%4==0?true:false;
+    },
+    endTimeArr(){
+        if(this.endTime){
+           return  this.endTime.split('-')
+        }else{
+            return []
+        }
+    }
+  },
+  methods:{
+    sel(){
+      this.show = false;
+      this.onOk(this.year+'-'+this.month+'-'+this.day)
+    },
+    itemSel(){
+
+    },
+    setMonth(){
+      let c2 = this.month == 2;
+      let c1 = [1,3,5,7,8,10,12].join().indexOf(this.month);
+      let m = '',newM  = [];
+      if(c2){
+        if(this.isR){
+          m = [1,29];
+        }else{
+          m= [1,28];
+        }
+      }else if(c1<0){
+        m = [1,30];
+      }else{
+        m = [1,31];
+      }
+      let mArr = [],m2 = [1,12];
+      if(this.endTimeArr){
+
+        if(this.year == + this.endTimeArr[0]){
+          m2[1] = + this.endTimeArr[1]
+
+          if(this.month== +this.endTimeArr[1]){
+            m[1] = + this.endTimeArr[2]
+          }
+
+        }
+      }
+      for(let i=1;i<=m[1];i++){
+        newM.push(i+'日')
+      }
+      for(let i=1;i<= m2[1];i++){
+        mArr.push(i+'月')
+      }
+      this.dataList[2] = newM;
+      this.dataList[1] = mArr;
+    },
+    change(val,key,type = ''){
+      if(type=='day'){
+        this.day = key+1;
+      }else if(type=='year'){
+        this.year = val.match(/\d*/g)[0];
+        this.setMonth()
+      }else if(type=='month'){
+        this.month = key+1;
+        this.setMonth()
+      }
+    },
+    cancel(){
+      this.show = false;
+      this.onCancel()
+    },
+  },
+  mounted(){
 
 
+    this.setMonth()
+  },
+  components:{
+    PickerItem
+  }
+}
 </script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+

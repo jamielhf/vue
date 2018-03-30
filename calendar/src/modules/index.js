@@ -1,98 +1,106 @@
 
-import CalendarMain from '../components/calendarMain.vue'
+import PickerCom from '../components/Picker.vue'
 import { mergeOptions } from './util'
 import '../css/calendar.scss'
 
+let Picker = {};
 
 
-let Calendar = {};
-
-
-Calendar.install = function (Vue) {
+Picker.install = function (Vue) {
 
     let t = new Date();
 
-    Vue.prototype.$calendar = {}
+    Vue.prototype.$picker= {}
 
-    let  CalendarMainCom = Vue.extend(CalendarMain)
+    let  CalendarMainCom = Vue.extend(PickerCom)
 
     let instance = new CalendarMainCom({
         el: document.createElement('div')
     })
 
-
     document.body.appendChild(instance.$el);
 
-
-    console.log(instance)
-    Vue.prototype.$calendar.show  = (settings={})=>{
+    Vue.prototype.$picker.show  = (settings={})=>{
+      let date =  new Date()
         instance =  Object.assign(instance, {
             show :true,
-            year:[1951,2050],
-            month:[1,12],
-            day:[1,31],
-            curYear:1951,
-            curMonth:1,
+            type:'picker', //默认选择器
+            data:[],
+            year:date.getFullYear(),
+            month:date.getMonth()+1,
+            day:date.getDate(),
             endTime:'',
             date:'',
-            curDay:1,
+            onOk(e){
+              console.log(e)
+              console.log('选中回调')
+            },
+            onCancel(){
+              console.log('取消回调')
+            }
         })
 
-        let d = ''
+//如果是日期模式
+      if(settings.type=='datePicker'){
+        let years = [1950,2050];
+        let endY = (new Date(settings.endTime)).getFullYear();
+        if(settings.endTime && endY>=years[0] &&  endY<=years[1]){
 
-                //传入日期，或者已经有选中的日期，就会是初始值
-            let date = settings.date||instance.date;
-                if(date){
-                    try{
-                         d = date.split('-')
-                    }catch (e){
-                        console.log(e);
-                        let time = new Date()
-                        d = [time.getFullYear(),time.getMonth()+1,time.getDate()]
-                    }
-                }else{
-                    let time = new Date()
-                    d = [time.getFullYear(),time.getMonth()+1,time.getDate()]
-                }
-
-
-            if(settings.year){
-
-                if(d[0]<settings.year[0]||d[1]>settings.year[1]){
-                    d[0] = settings.year[0]
-                }
+          if(settings.date){
+            let e1 = new Date(settings.endTime).getTime();
+            let e2 = new Date(settings.date).getTime();
+            if(e2>e1){
+              settings.endTime = ''
+            }else{
+              years[1] = endY;
             }
-            let reg = /^(?:(?!0000)[0-9]{4}-(?:(?:[1-9]|1[0-2])-(?:[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:[13578]|1[02])-31)|(?:[0-9]{2}(?:[48]|[2468][048]|[13579][26])|(?:[48]|[2468][048]|[13579][26])00)-2-29)$/;
+          }else{
+            years[1] = endY;
+          }
+
+        }else{
+          settings.endTime = ''
+        }
+console.log(years)
+        if(settings.date){
+          let t = settings.date.split('-');
+          //验证输入的年的范围是否正确
+          if(t[0]>= years[0]&&t[0]<=years[1]){
+            settings.year = +t[0];
+            settings.month = +t[1];
+            settings.day = +t[2];
+          }
+        }
 
 
-            if(!reg.test(settings.endTime)){
-                console.log('所填的时间格式有误吧')
-                settings.endTime = ''
-            }
+        let months = [1,12];
+        let days = [1,30];
+        let yearsList =[],monthsList = [],daysList = [];
 
+        for(;years[0]<=years[1];years[0]++){
+          yearsList.push(years[0]+'年')
+        }
+        for(;months[0]<=months[1];months[0]++){
+          monthsList.push(months[0]+'月')
+        }
+        for(;days[0]<=days[1];days[0]++){
+          daysList.push(days[0]+'日')
+        }
 
-        [settings.curYear,settings.curMonth,settings.curDay] = d;
+        settings.dataList = [
+          yearsList,monthsList,daysList
+        ]
+      }
 
-            console.log(settings)
-
-        mergeOptions(instance, settings)
-
+     mergeOptions(instance, settings)
+      console.log(instance)
 
     }
-    Vue.prototype.$calendar.hide  = ()=>{
+    Vue.prototype.$picker.hide  = ()=>{
         instance.show = false
     }
 
-    Vue.prototype.$calendar.getDate  = ()=>{
-        return {
-            year:instance.year||(new Date).getFullYear(),
-            month:instance.month||((new Date).getMonth()+1),
-            day:instance.day||(new Date).getDay()
-        }
-    }
-
-
 }
-export  default Calendar
+export  default Picker
 
 

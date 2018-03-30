@@ -1,4 +1,2 @@
-
-import Calendar from './modules/index';
-
-export default Calendar
+import Picker from './modules/index';
+export default Picker
