@@ -37,12 +37,12 @@ calendar
 
 ## 组件使用
 >安装
-```javascript
+```
 npm i vue2-datepick --save
 ```
 
 >初始化
-```javascript
+```
 import Calendar from 'vue2-datepick';
 Vue.use(Calendar);
 ```
@@ -99,9 +99,9 @@ Vue.use(Calendar);
 
 
 ### 版本
-3.0.0 修复之前的部分bug，还有样式的问题，现在是用vw做单位所以可能在低版本的手机会不兼容
-2.1.0 添加了endTime终止的时间，更新了vue的版本
-2.0.4 点击背景可以关闭
-2.0.0 修复之前的日期没有联动的bug，重构了一次
-1.0.4 更改初始化的代码
+3.0.0 修复之前的部分bug，还有样式的问题，现在是用vw做单位所以可能在低版本的手机会不兼容  
+2.1.0 添加了endTime终止的时间，更新了vue的版本  
+2.0.4 点击背景可以关闭  
+2.0.0 修复之前的日期没有联动的bug，重构了一次  
+1.0.4 更改初始化的代码  
 
