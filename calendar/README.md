@@ -1,5 +1,6 @@
 # calendar vue日期选择组件
-
+## 重要
+> 最新的版本可能跟之前的调用方法有点不同，升级的时候请看下面的调用方法
 ## 介绍
 >一个选择日期的vue组件
 
@@ -18,9 +19,8 @@
 
 ## 目录结构
 
-demo 用vue-cli 的webpack-simple构建的
+demo 用vue-cli 的webpack构建的，加了publish的文件,在发布npm的时候
 ```
-calendar
 　|--dist　build生成的目录
 　|--doc   展示图片
   |--lib   publish 之后的文件，发布到npm用
