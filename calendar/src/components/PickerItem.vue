@@ -35,7 +35,6 @@ export default {
   },
   mounted(){
       //初始化，定位第一个
-
      if(this.val){
         this.moveTo(this.val)
      }else{
@@ -78,9 +77,11 @@ export default {
       }
     },
     end(e){
+      console.log(111)
       this.endY = e.changedTouches[0].pageY;
       //非线性衰减
-      let  t = Math.sqrt(Math.abs(this.endY - this.startY)) / 10;
+      let  t = Math.sqrt(Math.abs(this.endY - this.startY)) / 8;
+      console.log(t)
       this.scroll(this.dY+this.endY-this.startY,t);
     },
     move(e){

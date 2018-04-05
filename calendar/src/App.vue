@@ -34,7 +34,6 @@ export default {
       this.$picker.show({
         type:'datePicker',
         date:this.date2,  //初始化时间
-        endTime:'2015-02-11',  //截至时间
         onOk:(e)=>{
           this.date2 = e;
         },
