@@ -11,6 +11,9 @@
 </template>
 
 <script>
+
+import {add,sub,mul,div,rem} from '../modules/util'
+
 export default {
   data () {
     return {
@@ -26,19 +29,21 @@ export default {
   },
   computed:{
     itemHeight(){
-        return document.querySelector('.m-scroller-item').offsetHeight
-     },
+        return (+window.getComputedStyle(document.querySelector('.m-scroller-item')).height.replace('px','')).toFixed(2);
+    },
     //选项长度
     itemLen(){
         return this.d.length
     }
   },
   mounted(){
+     console.log(1,this.itemHeight);
       //初始化，定位第一个
      if(this.val){
         this.moveTo(this.val)
      }else{
-       this.dY = this.itemHeight*4;
+       this.dY = mul(this.itemHeight,4);
+      
        this.domStyle =  this.style =  {
          transform:'translate3d(0px, '+this.dY+'px, 0px)'
        }
@@ -48,19 +53,24 @@ export default {
   methods:{
     scroll(y,t){
     //根据选项高度判断定在哪个位置
-      y = y -y%this.itemHeight +(y%this.itemHeight>this.itemHeight/2?this.itemHeight:0)
-      //最大最小情况的判断
-      if(y>this.itemHeight*4){
-        y=this.itemHeight*4
-      }
+    //  y = y -y%this.itemHeight +(y%this.itemHeight>this.itemHeight/2?this.itemHeight:0)
 
-      if(y<(5-this.itemLen)*this.itemHeight){
-        y = (5-this.itemLen)*this.itemHeight
+     let cTop = rem(y,this.itemHeight) > div(this.itemHeight,2) ? this.itemHeight : 0;
+      y = add(sub(y , rem(y,this.itemHeight)) , cTop);
+
+      console.log(y);
+      //最大最小情况的判断
+      if(y > mul(this.itemHeight,4)){
+        y = mul(this.itemHeight,4)
+      }
+      let sT = mul((5-this.itemLen),this.itemHeight);
+      if(y < sT){
+        y = sT
       }
 
       this.dY = y;  //记录现在的位置
 
-      this.itemKey = (this.itemHeight*4-y)/this.itemHeight //第几个值
+      this.itemKey = parseInt(sub(mul(this.itemHeight,4),y)/this.itemHeight) //第几个值
 
       this.domStyle =  this.style =  {
         transform:'translate3d(0px, '+y+'px, 0px)',
@@ -77,11 +87,9 @@ export default {
       }
     },
     end(e){
-      console.log(111)
       this.endY = e.changedTouches[0].pageY;
       //非线性衰减
       let  t = Math.sqrt(Math.abs(this.endY - this.startY)) / 8;
-      console.log(t)
       this.scroll(this.dY+this.endY-this.startY,t);
     },
     move(e){
@@ -112,7 +120,7 @@ export default {
           }
         })
       }
-      this.dY =  (4-this.itemKey)*this.itemHeight;
+      this.dY =  mul((4-this.itemKey),this.itemHeight);
       this.scroll(this.dY,0)
     }
   },
@@ -120,7 +128,7 @@ export default {
     d(){
        if(this.itemKey+1>this.d.length){
          this.itemKey = this.d.length;
-         this.dY =  (4-this.itemKey)*this.itemHeight;
+         this.dY =  mul((4-this.itemKey),this.itemHeight);
          this.scroll(this.dY,0)
        }
 

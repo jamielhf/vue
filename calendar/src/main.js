@@ -3,7 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 // import Picker from '';
-import Calendar from 'vue2-datepick';
+// import Calendar from 'vue2-datepick';
+import Calendar from './modules/index';
 Vue.use(Calendar);
 
 // Vue.use(Picker);
