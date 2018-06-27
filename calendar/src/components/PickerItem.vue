@@ -37,7 +37,6 @@ export default {
     }
   },
   mounted(){
-     console.log(1,this.itemHeight);
       //初始化，定位第一个
      if(this.val){
         this.moveTo(this.val)
@@ -58,7 +57,6 @@ export default {
      let cTop = rem(y,this.itemHeight) > div(this.itemHeight,2) ? this.itemHeight : 0;
       y = add(sub(y , rem(y,this.itemHeight)) , cTop);
 
-      console.log(y);
       //最大最小情况的判断
       if(y > mul(this.itemHeight,4)){
         y = mul(this.itemHeight,4)
@@ -70,8 +68,7 @@ export default {
 
       this.dY = y;  //记录现在的位置
 
-      this.itemKey = parseInt(sub(mul(this.itemHeight,4),y)/this.itemHeight) //第几个值
-
+      this.itemKey = div(sub(mul(this.itemHeight,4),y),this.itemHeight) //第几个值
       this.domStyle =  this.style =  {
         transform:'translate3d(0px, '+y+'px, 0px)',
         transition:"all " + t + "s cubic-bezier(0.1, 0.85, 0.25, 1) 0s"

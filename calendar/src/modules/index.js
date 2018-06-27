@@ -61,7 +61,6 @@ Picker.install = function (Vue) {
         }else{
           settings.endTime = ''
         }
-console.log(years)
         if(settings.date){
           let t = settings.date.split('-');
           //验证输入的年的范围是否正确
@@ -93,7 +92,6 @@ console.log(years)
       }
 
      mergeOptions(instance, settings)
-      console.log(instance)
 
     }
     Vue.prototype.$picker.hide  = ()=>{
