@@ -64,7 +64,7 @@ Vue.use(Calendar);
    data(){
        return{
            date:'',
-         date2:'2010-3-2'
+           date2:'2010-3-2'
          }
    },
    methods:{
@@ -83,7 +83,8 @@ Vue.use(Calendar);
        this.$picker.show({
          type:'datePicker',
          date:this.date2,  //初始化时间
-         endTime:'2015-02-11',  //截至时间
+         endTime:'2020-02-11',  //截至时间
+         startTime:'2010-02-11',  //开始时间
          onOk:(e)=>{
            this.date2 = e;
          },
@@ -104,6 +105,7 @@ Vue.use(Calendar);
 
 ### 版本
 
+3.0.6 新增开始时间的限制 startTime
 3.0.5 修改bug  
 3.0.4 修改样式不居中的问题  
 3.0.0 修复之前的部分bug，还有样式的问题，现在是用vw做单位所以可能在低版本的手机会不兼容  
