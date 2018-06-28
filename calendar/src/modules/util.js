@@ -69,6 +69,12 @@ function rem(a, b) {
   return sub(a , mul( parseInt(div(a,b)),b))
 }
 
+function getDate(date){
+   const arr = date.toString().split('-');
+   arr[1] = arr[1] < 10 ? '0'+arr[1]:arr[1];
+   arr[2] = arr[2] < 10 ? '0'+arr[2]:arr[2];
+   return `${arr[0]}-${arr[1]}-${arr[2]}`
+}
 
 export {
   mergeOptions,
@@ -76,5 +82,6 @@ export {
   sub,
   mul,
   div,
-  rem
+  rem,
+  getDate
 }

@@ -1,6 +1,6 @@
 
 import PickerCom from '../components/Picker.vue'
-import { mergeOptions } from './util'
+import { mergeOptions , getDate} from './util'
 import '../css/calendar.scss'
 
 let Picker = {};
@@ -29,6 +29,7 @@ Picker.install = function (Vue) {
             year:date.getFullYear(),
             month:date.getMonth()+1,
             day:date.getDate(),
+            startTime:'',
             endTime:'',
             date:'',
             onOk(e){
@@ -43,32 +44,40 @@ Picker.install = function (Vue) {
 //如果是日期模式
       if(settings.type=='datePicker'){
         let years = [1950,2050];
-        let endY = (new Date(settings.endTime)).getFullYear();
-        if(settings.endTime && endY>=years[0] &&  endY<=years[1]){
-
-          if(settings.date){
-            let e1 = new Date(settings.endTime).getTime();
-            let e2 = new Date(settings.date).getTime();
-            if(e2>e1){
-              settings.endTime = ''
-            }else{
-              years[1] = endY;
-            }
-          }else{
-            years[1] = endY;
-          }
-
-        }else{
-          settings.endTime = ''
+        // 有设置结束时间
+        if(settings.endTime){
+          let endY = (new Date(getDate(settings.endTime))).getFullYear();
+          years[1] = endY;
+         
         }
-        if(settings.date){
-          let t = settings.date.split('-');
-          //验证输入的年的范围是否正确
-          if(t[0]>= years[0]&&t[0]<=years[1]){
-            settings.year = +t[0];
-            settings.month = +t[1];
-            settings.day = +t[2];
+        // 有设置开始时间
+        if(settings.startTime){
+          let startY = (new Date(getDate(settings.startTime))).getFullYear();
+          years[0] = startY;
+        }
+        // 两个都设置了
+        if(settings.startTime && settings.endTime){
+          if((new Date(getDate(settings.startTime))).getFullYear()>=(new Date(getDate(settings.endTime))).getFullYear()){
+            years[0] = 1950;
+            settings.startTime = '';
           }
+        }
+           
+        if(settings.date){
+          const setDate = new Date(getDate(settings.date));
+          const end = (new Date(getDate(settings.endTime) || '2050-01-01').getTime());
+          const start = (new Date(getDate(settings.startTime)|| '1950-01-01').getTime());
+      
+          //验证输入的年的范围是否正确
+          if(setDate.getTime()>= start && setDate.getTime()<=end){
+            settings.year = setDate.getFullYear();
+            settings.month =  setDate.getMonth() + 1;
+            settings.day =  setDate.getDate();
+          
+          }else{
+            settings.date = '';
+          }
+         
         }
 
 

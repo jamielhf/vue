@@ -39,7 +39,7 @@ export default {
   mounted(){
       //初始化，定位第一个
      if(this.val){
-        this.moveTo(this.val)
+        this.moveTo(this.val);
      }else{
        this.dY = mul(this.itemHeight,4);
       
@@ -100,7 +100,15 @@ export default {
     },
     moveTo(val){
       if(this.selType=="month"||this.selType=="day"){
-         this.itemKey = +this.val -1;
+        //  this.itemKey = +this.val -1;
+        this.itemKey = 0;
+         this.d.map( (v,k) =>{
+            // console.log(v)
+          if(v.match(/\d*/g)[0]==val){
+            this.itemKey = k
+          }
+        })
+       
       }else if(this.selType=="year"){
         this.itemKey = 0;
          this.d.map( (v,k) =>{
@@ -109,7 +117,7 @@ export default {
           }
         })
 
-      }else{
+      }else{  // 日期外的 如果后面需要做成其他类型
         this.itemKey = 0;
         this.d.map( (v,k) =>{
           if(v==val){
@@ -128,6 +136,16 @@ export default {
          this.dY =  mul((4-this.itemKey),this.itemHeight);
          this.scroll(this.dY,0)
        }
+      if(this.selType=="month" || this.selType=="day"){
+         this.d.map( (v,k) =>{
+          if(v.match(/\d*/g)[0]==this.val){
+            this.itemKey = k
+          }
+        })
+        this.dY =  mul((4-this.itemKey),this.itemHeight);
+         this.scroll(this.dY,0)
+        console.log(this.itemKey,this.val);
+      }
 
     }
   },

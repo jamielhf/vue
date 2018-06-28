@@ -36,6 +36,7 @@ export default {
       month:1,
       day:1,
       endTime:'',
+      startTime:'',
       onOk(e){
         console.log(e)
       },
@@ -47,6 +48,13 @@ export default {
   computed:{
     isR(){
       return this.year%4==0?true:false;
+    },
+    startTimeArr(){
+      if(this.startTime){
+           return  this.startTime.split('-')
+        }else{
+            return []
+        }
     },
     endTimeArr(){
         if(this.endTime){
@@ -67,7 +75,7 @@ export default {
     setMonth(){
       let c2 = this.month == 2;
       let c1 = [1,3,5,7,8,10,12].join().indexOf(this.month);
-      let m = '',newM  = [];
+      let m = '',newM  = []; // 日
       if(c2){
         if(this.isR){
           m = [1,29];
@@ -79,7 +87,7 @@ export default {
       }else{
         m = [1,31];
       }
-      let mArr = [],m2 = [1,12];
+      let mArr = [],m2 = [1,12]; //月
       if(this.endTimeArr){
 
         if(this.year == + this.endTimeArr[0]){
@@ -91,23 +99,37 @@ export default {
 
         }
       }
-      for(let i=1;i<=m[1];i++){
+      if(this.startTimeArr){
+
+        if(this.year == + this.startTimeArr[0]){
+          m2[0] = + this.startTimeArr[1]
+
+          if(this.month == +this.startTimeArr[1]){
+            m[0] = + this.startTimeArr[2]
+          }
+
+        }
+      }
+      
+      for(let i= m[0];i<=m[1];i++){
         newM.push(i+'日')
       }
-      for(let i=1;i<= m2[1];i++){
+      for(let i= m2[0];i<= m2[1];i++){
         mArr.push(i+'月')
       }
       this.dataList[2] = newM;
       this.dataList[1] = mArr;
     },
+    // 确定数值的回调
     change(val,key,type = ''){
+      
       if(type=='day'){
-        this.day = key+1;
+        this.day = val.match(/\d*/g)[0];
       }else if(type=='year'){
         this.year = val.match(/\d*/g)[0];
         this.setMonth()
       }else if(type=='month'){
-        this.month = key+1;
+        this.month = val.match(/\d*/g)[0];
         this.setMonth()
       }
     },
