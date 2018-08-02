@@ -44,11 +44,12 @@ Picker.install = function (Vue) {
 //如果是日期模式
       if(settings.type=='datePicker'){
         let years = [1950,2050];
+        
         // 有设置结束时间
         if(settings.endTime){
           let endY = (new Date(getDate(settings.endTime))).getFullYear();
           years[1] = endY;
-         
+          alert(getDate(settings.endTime))
         }
         // 有设置开始时间
         if(settings.startTime){
@@ -84,7 +85,7 @@ Picker.install = function (Vue) {
         let months = [1,12];
         let days = [1,30];
         let yearsList =[],monthsList = [],daysList = [];
-
+       
         for(;years[0]<=years[1];years[0]++){
           yearsList.push(years[0]+'年')
         }
@@ -94,7 +95,7 @@ Picker.install = function (Vue) {
         for(;days[0]<=days[1];days[0]++){
           daysList.push(days[0]+'日')
         }
-
+        
         settings.dataList = [
           yearsList,monthsList,daysList
         ]

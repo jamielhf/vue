@@ -69,6 +69,7 @@ export default {
       this.dY = y;  //记录现在的位置
 
       this.itemKey = div(sub(mul(this.itemHeight,4),y),this.itemHeight) //第几个值
+      console.log(t);
       this.domStyle =  this.style =  {
         transform:'translate3d(0px, '+y+'px, 0px)',
         transition:"all " + t + "s cubic-bezier(0.1, 0.85, 0.25, 1) 0s"
@@ -86,7 +87,8 @@ export default {
     end(e){
       this.endY = e.changedTouches[0].pageY;
       //非线性衰减
-      let  t = Math.sqrt(Math.abs(this.endY - this.startY)) / 8;
+      let  t = parseInt(Math.sqrt(Math.abs(this.endY - this.startY))) / 10;
+      // console.log(t);
       this.scroll(this.dY+this.endY-this.startY,t);
     },
     move(e){
@@ -134,7 +136,7 @@ export default {
        if(this.itemKey+1>this.d.length){
          this.itemKey = this.d.length;
          this.dY =  mul((4-this.itemKey),this.itemHeight);
-         this.scroll(this.dY,0)
+         this.scroll(this.dY,0.4)
        }
       if(this.selType=="month" || this.selType=="day"){
          this.d.map( (v,k) =>{
@@ -143,7 +145,7 @@ export default {
           }
         })
         this.dY =  mul((4-this.itemKey),this.itemHeight);
-         this.scroll(this.dY,0)
+         this.scroll(this.dY,0.4)
         console.log(this.itemKey,this.val);
       }
 

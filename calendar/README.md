@@ -105,6 +105,7 @@ Vue.use(Calendar);
 
 ### 版本
 
+3.0.7 修改ios下的bug
 3.0.6 新增开始时间的限制 startTime
 3.0.5 修改bug  
 3.0.4 修改样式不居中的问题  
