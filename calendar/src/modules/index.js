@@ -49,7 +49,6 @@ Picker.install = function (Vue) {
         if(settings.endTime){
           let endY = (new Date(getDate(settings.endTime))).getFullYear();
           years[1] = endY;
-          alert(getDate(settings.endTime))
         }
         // 有设置开始时间
         if(settings.startTime){
