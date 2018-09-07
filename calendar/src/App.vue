@@ -34,8 +34,8 @@ export default {
       this.$picker.show({
         type:'datePicker',
         date:this.date2,  //初始化时间
-        endTime:'2020-02-11',  //截至时间
-        startTime:'2010-02-11',  //开始时间
+        endTime:'2018-9-8',  //截至时间
+        startTime:'2018-06-19',  //开始时间
         onOk:(e)=>{
           this.date2 = e;
         },

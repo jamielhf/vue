@@ -69,7 +69,7 @@ export default {
       this.dY = y;  //记录现在的位置
 
       this.itemKey = div(sub(mul(this.itemHeight,4),y),this.itemHeight) //第几个值
-      console.log(t);
+      // console.log(t);
       this.domStyle =  this.style =  {
         transform:'translate3d(0px, '+y+'px, 0px)',
         transition:"all " + t + "s cubic-bezier(0.1, 0.85, 0.25, 1) 0s"
@@ -146,7 +146,7 @@ export default {
         })
         this.dY =  mul((4-this.itemKey),this.itemHeight);
          this.scroll(this.dY,0.4)
-        console.log(this.itemKey,this.val);
+        // console.log(this.itemKey,this.val);
       }
 
     }

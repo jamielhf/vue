@@ -57,9 +57,9 @@ Picker.install = function (Vue) {
         }
         // 两个都设置了
         if(settings.startTime && settings.endTime){
-          if((new Date(getDate(settings.startTime))).getFullYear()>=(new Date(getDate(settings.endTime))).getFullYear()){
+          if((new Date(getDate(settings.startTime))).getTime()>=(new Date(getDate(settings.endTime))).getTime()){
             years[0] = 1950;
-            settings.startTime = '';
+            settings.startTime = '1950-01-01';
           }
         }
            
@@ -67,7 +67,6 @@ Picker.install = function (Vue) {
           const setDate = new Date(getDate(settings.date));
           const end = (new Date(getDate(settings.endTime) || '2050-01-01').getTime());
           const start = (new Date(getDate(settings.startTime)|| '1950-01-01').getTime());
-      
           //验证输入的年的范围是否正确
           if(setDate.getTime()>= start && setDate.getTime()<=end){
             settings.year = setDate.getFullYear();
