@@ -74,7 +74,7 @@ export default {
     },
     setMonth(){
       let c2 = this.month == 2;
-      let c1 = [1,3,5,7,8,10,12].join().indexOf(this.month);
+      let c1 = [1,3,5,7,8,10,12].join().indexOf(parseInt(this.month));
       let m = '',newM  = []; // 日
       if(c2){
         if(this.isR){
@@ -110,7 +110,7 @@ export default {
 
         }
       }
-      
+
       for(let i= m[0];i<=m[1];i++){
         newM.push(i+'日')
       }
@@ -122,7 +122,7 @@ export default {
     },
     // 确定数值的回调
     change(val,key,type = ''){
-      
+
       if(type=='day'){
         this.day = val.match(/\d*/g)[0];
       }else if(type=='year'){
