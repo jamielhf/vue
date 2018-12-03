@@ -24,7 +24,8 @@
 
 <script>
  import '../css/calendar.scss'
- import PickerItem from './PickerItem.vue'
+ import PickerItem from './PickerItem.vue';
+ import {getDate} from '../modules/util'
 export default {
   name: 'HelloWorld',
   data () {
@@ -67,7 +68,9 @@ export default {
   methods:{
     sel(){
       this.show = false;
-      this.onOk(this.year+'-'+this.month+'-'+this.day)
+
+      const date = getDate(this.year+'-'+this.month+'-'+this.day);
+      this.onOk(date)
     },
     itemSel(){
 
