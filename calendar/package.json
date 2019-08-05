@@ -8,7 +8,7 @@
     "vue日期选择"
   ],
   "description": "A Vue.js project,vue-calendar,vuejs,vue",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "author": "linhf <569309786@qq.com>",
   "private": false,
   "main": "./lib/index.js",
