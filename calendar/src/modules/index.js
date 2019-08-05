@@ -81,7 +81,7 @@ Picker.install = function (Vue) {
 
 
         let months = [1,12];
-        let days = [1,30];
+        let days = [1,31];
         let yearsList =[],monthsList = [],daysList = [];
        
         for(;years[0]<=years[1];years[0]++){
