@@ -15,7 +15,7 @@ export default {
   data(){
       return{
           date:'',
-          date2:'2018-3-31'
+          date2:'2018-4-30'
         }
   },
   methods:{
