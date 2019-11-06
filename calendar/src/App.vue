@@ -1,80 +1,51 @@
 <template>
   <div id="app">
-    <p @click = "setDate" >点击设置日期（默认今天）</p>
-    <p @click = "setDate2" >设定指定的日期（20150220）</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>{{date}}</p>
-
+      <p @click = "setDate" >点击设置日期（默认今天）</p>
+      <p>选中的时间{{date}}</p>
+      <p @click = "setDate2" >设定指定的日期（2018-3-31）</p>
+      <p>选中的时间{{date2}}</p>
 
   </div>
 </template>
 
 <script>
 
-
 export default {
-  name: 'app',
-  data () {
-    return {
-      //选择日期的开始返回，默认是1900 - 2050
-       start:1950,
-       end:2030
-    }
+  name: 'App',
+  data(){
+      return{
+          date:'',
+          date2:'2018-3-31'
+        }
   },
-
   methods:{
+    setDate(){
 
-   setDate(){
-      this.$calendar({
-          onOk(data){
-              console.log(data)
-              console.log('确定')
-          },
-          onCancel(){
-              console.log('取消')
-          }
-//        year:2015,
-//        month:2,
-//        day:20,
-      })
+      this.$picker.show({
+        type:'datePicker',
+        onOk: (date) =>{
+          this.date = date
+        }
+      });
+
     },
-      setDate2(){
-          this.$calendar({
-              onOk(data){
-                  console.log(data)
-                  console.log('确定')
-              },
-              onCancel(){
-                  console.log('取消')
-              },
-            year:2015,
-            month:2,
-            day:20,
-          })
-      }
-  },
-    computed:{
-      //遮罩状态
-      mark:function () {
-      //  return  this.$store.getters.markStatus
-      },
-      //组件状态
-      calendar:function () {
-   //     return this.$store.getters.getCalendarStatus?{ display:'block'}:{ display:'none'};
-      },
-      //返回的日期
-      date:function () {
-      //  return this.$store.getters.getCalendarDate;
-      }
+    setDate2(){
 
-    }
+      this.$picker.show({
+        type:'datePicker',
+        date:this.date2,  //初始化时间
+        endTime:'2025-9-8',  //截至时间
+        startTime:'2010-06-19',  //开始时间
+        onOk:(e)=>{
+          this.date2 = e;
+        },
+
+      })
+
+    },
+
+  },
 
 }
 </script>
+
