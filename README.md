@@ -1,6 +1,6 @@
 # vue2.0的学习
 
-##demo1 
+##demo2 
 >是一个简单的router的demo
 
 ##calender 
