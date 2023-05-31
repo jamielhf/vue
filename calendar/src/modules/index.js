@@ -1,76 +1,76 @@
 
-import calendarMain from '../components/calendarMain.vue'
-import m from  '../css/style.scss'
-import s from  '../css/calendar.scss'
+import CalendarMain from '../components/calendarMain.vue'
+import { mergeOptions } from './util'
+import   '../css/style.scss'
+import '../css/calendar.scss'
+
+
 
 let Calendar = {};
 
 
-Calendar.install = function (Vue, options) {
+Calendar.install = function (Vue) {
+
+    let t = new Date();
+
+    Vue.prototype.$calendar = {}
+
+    let  CalendarMainCom = Vue.extend(CalendarMain)
+
+    let instance = new CalendarMainCom({
+        el: document.createElement('div')
+    })
+    document.body.appendChild(instance.$el);
+
+    Vue.prototype.$calendar.show  = (settings={})=>{
+        instance.show = true;
+        let d = ''
+
+                //传入日期，或者已经有选中的日期，就会是初始值
+            let date = settings.date||instance.date;
+                if(date){
+                    try{
+                         d = date.split('-')
+                    }catch (e){
+                        console.log(e);
+                        let time = new Date()
+                        d = [time.getFullYear(),time.getMonth()+1,time.getDate()]
+                    }
+                }else{
+                    let time = new Date()
+                    d = [time.getFullYear(),time.getMonth()+1,time.getDate()]
+                }
 
 
-    let opt = {
-        startYear:1900,
-        endYear:2050,
-        date:'',     //完整的日期
-        status:true,
-        ok:false,      //点击ok
-    }
-
-    opt = Object.assign({},opt,options);
-
-    console.log(opt)
-
-    Vue.component('calendar-main', calendarMain)
-
-    Vue.prototype.$calendar = function(settings = {},type ='open'){
-
-        if(type=='close'){
-            opt.status = false
-        }
-
-
-        let t = new Date();
-
-        var  calendarComponent = Vue.extend({
-            template: "<calendar-main v-show='status' :dateData='dateData'  ></calendar-main>",
-
-            data:function(){
-                return {
-                    dateData:{
-                        startYear:opt.startYear,
-                        endYear:opt.endYear,
-                        year:settings.year||t.getFullYear(),
-                        month:settings.month||t.getMonth()+1,
-                        day:settings.day||t.getDate(),
-                        onOk:settings.onOk||function () {},
-                        onCancel:settings.onCancel||function (){},
-                    },
-                    status:opt.status
+            if(settings.year){
+                    console.log(d)
+                if(d[0]<settings.year[0]||d[1]>settings.year[1]){
+                    d[0] = settings.year[0]
                 }
             }
-        })
 
-        Vue.prototype.$calendar['close'] = function(settings) {
-            return Vue.prototype.$calendar(settings,'close')
+
+
+        [settings.curYear,settings.curMonth,settings.curDay] = d;
+        mergeOptions(instance, settings)
+
+        console.log(instance)
+
+    }
+    Vue.prototype.$calendar.hide  = ()=>{
+        instance.show = false
+    }
+
+    Vue.prototype.$calendar.getDate  = ()=>{
+        return {
+            year:instance.year||(new Date).getFullYear(),
+            month:instance.month||((new Date).getMonth()+1),
+            day:instance.day||(new Date).getDay()
         }
-        Vue.prototype.$calendar['set'] = function(settings) {
+    }
 
-        }
-        Vue.prototype.$calendar['get'] = function(settings) {
-
-        }
-
-        Vue.prototype.$calendarDate = function() {
-            return
-        }
-
-
-        var tpl1 = new calendarComponent().$mount().$el;
-        document.body.appendChild(tpl1);
-
-
-    };
 
 }
 export  default Calendar
+
+

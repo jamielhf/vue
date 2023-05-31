@@ -1,80 +1,55 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <p @click = "setDate" >点击设置日期（默认今天）</p>
-    <p @click = "setDate2" >设定指定的日期（20150220）</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>dd</p>
-    <p>{{date}}</p>
+    <p>选中的时间{{data}}</p>
+    <p @click = "setDate2" >设定指定的日期（2015-2-20）</p>
+    <p>选中的时间{{data2}}</p>
+
 
 
   </div>
 </template>
 
-<script>
 
+
+<script>
+import './css/style.scss'
 
 export default {
   name: 'app',
   data () {
     return {
-      //选择日期的开始返回，默认是1900 - 2050
-       start:1950,
-       end:2030
+        data:'',
+        data2:''
     }
   },
 
   methods:{
 
    setDate(){
-      this.$calendar({
-          onOk(data){
-              console.log(data)
-              console.log('确定')
-          },
-          onCancel(){
-              console.log('取消')
-          }
-//        year:2015,
-//        month:2,
-//        day:20,
-      })
+
+       this.$calendar.show({
+           onOk: (date) =>{
+              this.data = date
+           }
+       });
+
     },
-      setDate2(){
-          this.$calendar({
-              onOk(data){
-                  console.log(data)
-                  console.log('确定')
-              },
-              onCancel(){
-                  console.log('取消')
-              },
-            year:2015,
-            month:2,
-            day:20,
-          })
-      }
+    setDate2(){
+
+        this.$calendar.show({
+            year:[1925,2015],  //年份的范围,如果初始化的年份不在这个范围，会自动选最小的年份
+            date:'2015-2-20',  //初始化的日期
+            onOk: (date) =>{
+                this.data2 = date
+            },
+            onCancel:()=>{
+                console.log('关闭')
+            }
+        });
+
+    },
+
   },
-    computed:{
-      //遮罩状态
-      mark:function () {
-      //  return  this.$store.getters.markStatus
-      },
-      //组件状态
-      calendar:function () {
-   //     return this.$store.getters.getCalendarStatus?{ display:'block'}:{ display:'none'};
-      },
-      //返回的日期
-      date:function () {
-      //  return this.$store.getters.getCalendarDate;
-      }
-
-    }
-
 }
 </script>
